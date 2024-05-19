@@ -9,3 +9,8 @@ class ControladorIngredientes():
     def gerencia_imports(self):
         from Telas.tela_ingredientes import TelaIngredientes
         return TelaIngredientes
+
+
+    # def inclui_ingrediente(self):
+    #     dados_ingrediente = self.__telaIngredientes.cria_ingrediente()
+    #     novo_ingrediente = 
