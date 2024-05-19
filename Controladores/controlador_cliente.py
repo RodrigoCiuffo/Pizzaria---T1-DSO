@@ -1,6 +1,6 @@
 from Entidades.cliente import Cliente
 from Controladores.controlador_sistema import ControladorSistema
-# from Entidades.pedido import Pedido
+from Entidades.pedido import Pedido
 
 
 class ControladorCliente():
@@ -11,6 +11,7 @@ class ControladorCliente():
         self.__clientes = [
             Cliente('rodrigo', 24, 12345678910, 'Rua dos Bobos, N° 0', 12345678)]
         self.__cliente_atual = self.__clientes[0]
+        self.__pedido_finalizado = False
 
     def gerencia_imports(self):
         from Telas.tela_clientes import TelaClientes
@@ -80,7 +81,20 @@ class ControladorCliente():
         return self.__tela_clientes.print_opcao('\n'.join(dados))
 
     def cria_pedido(self):
-        pass
+        data = input('Digite a data (ex: 19/05/2024): ')
+        # pedido =  self.__cliente_atual.realiza_pedidos(data)
+        self.__tela_clientes.print_opcao('Selecione a(s) pizzas para o pedido')
+        self.__tela_clientes.print_opcao('----------SABOR----------')
+        sabor = int(input('1 - calabresa\n 2 - portuguesa\n 3 - frango: '))
+        self.__tela_clientes.print_opcao('----------TAMANHO----------')
+        tamanho = int(input('1 - broto\n 2 - media\n 3 - grande: '))
+        pedido = Pedido(self.__cliente_atual, sabor, tamanho, data)
+        mais_pizza = int(input('Deseja adicionar mais uma pizza?\n 1 - Sim\n 2 - Não'))
+        while mais_pizza == 1:
+            pedido.adiciona_pizza()
+        self.__tela_clientes.print_opcao('PEDIDO FINALIZADO!')
+        return pedido
+    
 
     def pedidos(self):
         return self.__cliente_atual.pedidos

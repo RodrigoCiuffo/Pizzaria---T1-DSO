@@ -9,7 +9,7 @@ class Pedido():
         self.__sabor = sabor
         self.__tamanho = tamanho
         self.__data = data
-        self.__pizzas = []
+        self.__pizzas = [self]
         self.__valor = 0.00
 
     def cliente(self):
