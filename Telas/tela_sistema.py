@@ -12,5 +12,5 @@ class TelaSistema():
         print("5 - Ingredientes")
         print("0 - Encerrar sessão")
 
-        opcao = int(input("Escolha a opcao:"))
+        opcao = int(input("Escolha a opcao: "))
         return opcao
