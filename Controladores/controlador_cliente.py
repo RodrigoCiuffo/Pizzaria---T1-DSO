@@ -1,15 +1,21 @@
-from Telas.tela_clientes import TelaClientes
 from Entidades.cliente import Cliente
-from Entidades.pedido import Pedido
-from controlador_sistema import ControladorSistema
+from Controladores.controlador_sistema import ControladorSistema
+# from Entidades.pedido import Pedido
+
 
 
 class ControladorCliente():
-    def __init__(self, controlador_sistema: ControladorSistema,):
+    def __init__(self, controlador_sistema: ControladorSistema):
+        imports = self.gerencia_imports()
         self.__controlador_sistema = controlador_sistema
-        self.__tela_clientes = TelaClientes(self)
-        self.__clientes = []
-        self.__cliente_atual = None
+        self.__tela_clientes = imports["Tela"](self)
+        self.__clientes = [Cliente('rodrigo', 24, '12345678910', 'Rua dos Bobos, N° 0', 12345678)]
+        self.__cliente_atual = self.__clientes[0]
+
+    def gerencia_imports(self):
+        from Telas.tela_clientes import TelaClientes
+        return {"Tela": TelaClientes, "Controlador Sistema": ControladorSistema}
+        
 
     def adiciona_cliente(self):
         nome = input('Digite o nome: ')
@@ -48,22 +54,22 @@ class ControladorCliente():
         return 'Cliente não encontrado'
 
     def mostrar_dados(self):
-        return ('Nome: ' + self.__cliente_atual.nome(),
-                'Idade: ' + self.__cliente_atual.idade(),
-                'Cpf: ' + self.__cliente_atual.cpf(),
-                'Endereço: ' + self.__cliente_atual.endereco(),
-                'Telefone: ' + self.__cliente_atual.telefone())
+        return (self.__cliente_atual.nome,
+                self.__cliente_atual.idade,
+                self.__cliente_atual.cpf,
+                self.__cliente_atual.endereco,
+                self.__cliente_atual.telefone)
 
-    # def cria_pedido(self):
-
+    def cria_pedido(self):
+        pass
 
     def pedidos(self):
         return self.__cliente_atual.pedidos()
 
-    def abre_tela_clientes(self):
+    def abre_tela_cliente(self):
         switcher = {
-            0: self.__controlador_sistema.tela_sistema,
-            1: self.adicional_cliente,
+            0: self.__controlador_sistema.acessa_tela_sistema,
+            1: self.adiciona_cliente,
             2: self.altera_dados,
             3: self.mostrar_dados,
             4: self.cria_pedido,

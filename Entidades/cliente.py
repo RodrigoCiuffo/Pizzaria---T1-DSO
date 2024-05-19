@@ -1,5 +1,5 @@
-from abstractpessoa import Pessoa
-from pedido import Pedido
+from Entidades.abstractpessoa import Pessoa
+# from Entidades.pedido import Pedido
 
 
 class Cliente(Pessoa):

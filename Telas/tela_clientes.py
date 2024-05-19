@@ -28,7 +28,7 @@ class TelaClientes():
         print('5 - Listar pedidos')
         print('-------------------------------------')
         print('0 - Voltar para a tela inicial')
-        opcao = self.le_numero('Digite uma das opções: ', [1, 2, 3, 4, 5, 0])
+        opcao = self.le_num('Digite uma das opções: ', [1, 2, 3, 4, 5, 0])
         return opcao
     
     def print_opcao(self, opcao):
