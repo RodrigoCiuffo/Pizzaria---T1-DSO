@@ -72,5 +72,8 @@ class ControladorCliente():
         while True:
             opcao = self.__tela_clientes.mostra_tela_opcoes()
             funcao_escolhida = switcher[opcao]
-            funcao_escolhida()
+            if opcao == 3 or opcao == 5:
+                print(funcao_escolhida())
+            else:
+                funcao_escolhida()
             # self.__tela_clientes.print_opcao(funcao_escolhida())
