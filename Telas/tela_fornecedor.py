@@ -17,7 +17,7 @@ class TelaFornecedor():
         while True:
             try:
                 escolha = int(input('Digite uma das opções listadas: '))
-                if escolha >= 0 and escolha <= 5:
+                if escolha >= 0 and escolha <= 4:
                     break
                 else:
                     print('Entrada inválida! O número informado não está entre as opções.')
