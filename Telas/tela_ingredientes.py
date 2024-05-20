@@ -1,4 +1,5 @@
 from Controladores.controlador_ingredientes import ControladorIngredientes
+from Entidades.Enum.nome_ingrediente import NomeIngrediente
 
 class TelaIngredientes():
     def __init__(self, controlador_ingredientes: ControladorIngredientes):
@@ -33,5 +34,6 @@ class TelaIngredientes():
                 ref_fornecedor = fornecedor
         if ref_fornecedor is None:
             print('Nenhum fornecedor com o CNPJ informado.')
+            return None
         else:
             return {"Data": data, "Nome": nome, "Quantidade": qtde, "Fornecedor": ref_fornecedor}

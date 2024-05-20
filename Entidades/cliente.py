@@ -1,16 +1,13 @@
-from Controladores.controlador_cliente import ControladorCliente
 from Entidades.abstractpessoa import Pessoa
 
 
 
+
 class Cliente(Pessoa):
-    def __init__(self, nome: str, idade: int, cpf: int, endereco: str, telefone: int, controlador: ControladorCliente):
+    def __init__(self, nome: str, idade: int, cpf: int, endereco: str, telefone: int):
         super().__init__(nome, idade, cpf, endereco, telefone)
         self.__pedidos = []
-        self.__controlador = ControladorCliente
 
-    def gerencia_import(self):
-        from Entidades.pedido import Pedido
 
     def pedido_atual(self):
         return self.__pedidos[0]
@@ -18,8 +15,9 @@ class Cliente(Pessoa):
     @property
     def pedidos(self):
         return self.__pedidos
-    
+
     def realiza_pedido(self, data: str):
+        from Entidades.pedido import Pedido
         if type(data) == str:
             pedido = Pedido(self, data)
             return pedido

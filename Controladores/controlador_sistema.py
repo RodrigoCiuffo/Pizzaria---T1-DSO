@@ -10,6 +10,10 @@ class ControladorSistema():
         self.__controlador_gerente = imports["Gerente"](self)
         self.__controlador_ingredientes = imports["Ingredientes"](self)
         self.__tela_sistema = imports["Tela"]()
+    
+    @property
+    def controlador_armazem(self):
+        return self.__controlador_armazem
 
     def gerencia_imports(self):
         from Controladores.controlador_fornecedor import ControladorFornecedor

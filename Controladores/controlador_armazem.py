@@ -25,7 +25,7 @@ class ControladorArmazem():
         self.__telaArmazem.mostra_ingredientes()
 
     def sai_ingredientes(self, sabor, tamanho):
-        self.__armazem.saida_ingredientes(sabor, tamanho)
+        self.__armazem.saida_ingrediente(sabor, tamanho)
 
     def retornar(self):
         self.__controlador_sistema.acessa_tela_sistema()

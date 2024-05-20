@@ -1,5 +1,7 @@
 from Entidades.ingrediente import Ingrediente
-
+from Entidades.Enum.nome_ingrediente import NomeIngrediente
+from Entidades.Enum.tamanho_pizza import TamanhoPizza
+from Entidades.Enum.sabor_pizza import SaborPizza
 
 class Armazem():
     def __init__(self):
@@ -17,19 +19,27 @@ class Armazem():
     def add_ingrediente(self, ingrediente: Ingrediente):
         self.__estoque.append(ingrediente)
 
-    def saida_ingrediente(self, sabor, tamanho):
-        if sabor == 'calabresa':
-            ingredientes = ['calabresa', 'molho', 'queijo', 'cebola', 'azeitona']
-        elif sabor == 'portuguesa':
-            ingredientes = ['ovo', 'molho', 'queijo', 'presunto', 'cebola', 'azeitona']
-        elif sabor == 'frango':
-            ingredientes = ['frango', 'molho', 'queijo', 'catupiry', 'azeitona']
-        for i in ingredientes:
-            for ingrediente in self.__estoque:
-                if ingrediente.nome_ingrediente == i:
-                    ingrediente.quantidade -= tamanho
-                    break
-            self.__saidas.append({i: tamanho})
+    def saida_ingrediente(self, sabor: NomeIngrediente, tamanho: TamanhoPizza):
+        if isinstance(sabor, SaborPizza) and isinstance(tamanho, TamanhoPizza):
+            if sabor.value == 'calabresa':
+                ingredientes = ['calabresa', 'molho', 'queijo', 'cebola', 'azeitona']
+            elif sabor.value == 'portuguesa':
+                ingredientes = ['ovo', 'molho', 'queijo', 'presunto', 'cebola', 'azeitona']
+            elif sabor.value == 'frango':
+                ingredientes = ['frango', 'molho', 'queijo', 'catupiry', 'azeitona']
+
+            if tamanho.value == 'broto':
+                subtraendo = 2
+            elif tamanho.value == 'media':
+                subtraendo = 4
+            elif tamanho.value == 'grande':
+                subtraendo = 6 
+            for i in ingredientes:
+                for ingrediente in self.__estoque:
+                    if ingrediente.nome_ingrediente.value == i:
+                        ingrediente.quantidade -= subtraendo
+                        break
+                self.__saidas.append({i: subtraendo})
         return None
 
     # def saida_ingredientes(self, consumo):

@@ -1,6 +1,8 @@
 from Entidades.cliente import Cliente
 from Controladores.controlador_sistema import ControladorSistema
 from Entidades.pedido import Pedido
+from Entidades.Enum.tamanho_pizza import TamanhoPizza
+from Entidades.Enum.sabor_pizza import SaborPizza
 
 
 class ControladorCliente():
@@ -85,22 +87,63 @@ class ControladorCliente():
         # pedido =  self.__cliente_atual.realiza_pedidos(data)
         self.__tela_clientes.print_opcao('Selecione a(s) pizzas para o pedido')
         self.__tela_clientes.print_opcao('----------SABOR----------')
-        sabor = int(input('1 - calabresa\n 2 - portuguesa\n 3 - frango: '))
+        loop = True
+        sabor_pizza = ''
+        while loop:
+            sabor_escolhido = input('Escolha uma opcao:\n calabresa\n portuguesa\n frango ')
+            for sabor in SaborPizza:
+                if sabor.value == sabor_escolhido:
+                    sabor_pizza = sabor
+                    loop = False
+                    break
+            if loop is True:
+                self.__tela_clientes.print_opcao('Informe uma opcao válida!')
         self.__tela_clientes.print_opcao('----------TAMANHO----------')
-        tamanho = int(input('1 - broto\n 2 - media\n 3 - grande: '))
-        pedido = Pedido(self.__cliente_atual, sabor, tamanho, data)
+        loop = True
+        tamanho_pizza = ''
+        while loop:
+            tamanho_escolhido = input('Escolha uma opcao:\n broto\n media\n grande ')
+            for tamanho in TamanhoPizza:
+                if tamanho.value == tamanho_escolhido:
+                    tamanho_pizza = tamanho
+                    loop = False
+                    break
+            if loop is True:
+                self.__tela_clientes.print_opcao('Informe uma opcao válida!')
+        self.__controlador_sistema.controlador_armazem.sai_ingredientes(sabor_pizza, tamanho_pizza)
+        pedido = Pedido(self.__cliente_atual, sabor_pizza, tamanho_pizza, data)
         mais_pizza = int(input('Deseja adicionar mais uma pizza?\n 1 - Sim\n 2 - Não'))
+
         while mais_pizza == 1:
-            data = input('Digite a data (ex: 19/05/2024): ')
             # pedido =  self.__cliente_atual.realiza_pedidos(data)
             self.__tela_clientes.print_opcao('Selecione a(s) pizzas para o pedido')
             self.__tela_clientes.print_opcao('----------SABOR----------')
-            sabor = int(input('1 - calabresa\n 2 - portuguesa\n 3 - frango: '))
+            loop = True
+            sabor_pizza = ''
+            while loop:
+                sabor_escolhido = input('Escolha uma opcao:\n calabresa\n portuguesa\n frango ')
+                for sabor in SaborPizza:
+                    if sabor.value == sabor_escolhido:
+                        sabor_pizza = sabor
+                        loop = False
+                        break
+                if loop is True:
+                    self.__tela_clientes.print_opcao('Informe uma opcao válida!')
             self.__tela_clientes.print_opcao('----------TAMANHO----------')
-            tamanho = int(input('1 - broto\n 2 - media\n 3 - grande: '))
-            pedido = Pedido(self.__cliente_atual, sabor, tamanho, data)
+            loop = True
+            tamanho_pizza = ''
+            while loop:
+                tamanho_escolhido = input('Escolha uma opcao:\n broto\n media\n grande ')
+                for tamanho in TamanhoPizza:
+                    if tamanho.value == tamanho_escolhido:
+                        tamanho_pizza = tamanho
+                        loop = False
+                        break
+                if loop is True:
+                    self.__tela_clientes.print_opcao('Informe uma opcao válida!')
+            self.__controlador_sistema.controlador_armazem.sai_ingredientes(sabor_pizza, tamanho_pizza)
+            pedido.adiciona_pizza(sabor_pizza, tamanho_pizza)
             mais_pizza = int(input('Deseja adicionar mais uma pizza?\n 1 - Sim\n 2 - Não'))
-            pedido.adiciona_pizza(sabor, tamanho)
         self.__tela_clientes.print_opcao('PEDIDO FINALIZADO!')
         self.__cliente_atual.pedidos.append(pedido)
         return pedido
