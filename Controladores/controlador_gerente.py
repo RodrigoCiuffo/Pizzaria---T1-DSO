@@ -27,7 +27,7 @@ class ControladorGerente():
             self.__gerente_atual = Gerente(nome, idade, cpf, endereco, telefone)
             return self.__tela_gerente.print_opcao('GERENTE CADASTRADO COM SUCESSO!')
         return self.__tela_gerente.print_opcao('JÁ EXISTE UM GERENTE CADASTRADO!')
-    
+
     def exclui_gerente(self):
         cpf = input('Confirme o CPF do gerente para prosseguir: ')
         if  self.__gerente_atual.acesso_administrativo(cpf):
@@ -38,7 +38,7 @@ class ControladorGerente():
                 return self.__tela_gerente.print_opcao('GERENTE EXCLUIDO COM SUCESSO!')
             return self.__tela_gerente.print_opcao('OPERAÇÃO CANCELADA!')
         return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
-    
+
     def altera_dados(self):
         cpf = input('Confirme o CPF do gerente para prosseguir: ')
         if  self.__gerente_atual.acesso_administrativo(cpf):
@@ -52,7 +52,7 @@ class ControladorGerente():
             self.__gerente_atual.telefone = telefone
             return self.__tela_gerente.print_opcao('DADOS ALTERADOS COM SUCESSO!')
         return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
-    
+
     def mostrar_dados(self):
         # cpf = int(input('Confirme o CPF do gerente para prosseguir: '))
         if self.__gerente_atual is None:
@@ -70,11 +70,11 @@ class ControladorGerente():
         return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
 
     def gera_relatorio_pedidos(self):
-        clientes = self.__controlador_cliente.__clientes
+        clientes = self.__controlador_cliente.clientes
         for cliente in clientes:
             for pedido in cliente.pedidos:
-                self.__gerente_atual.relatorio_pedido.append(pedido)
-        return self.__gerente_atual.relatorio_pedido
+                self.__gerente_atual.relatorio_pedidos.append(pedido)
+        return self.__tela_gerente.print_opcao(self.__gerente_atual.relatorio_pedidos)
     
     def gera_relatorio_ingredientes(self):
         estoque = self.__controlador_sistema.__controlador_armazem.armazem.estoque

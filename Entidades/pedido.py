@@ -12,7 +12,7 @@ class Pedido():
         self.__valor = 0.00
         self.adiciona_pizza(sabor, tamanho)
 
-
+    @property
     def cliente(self):
         return self.__cliente.nome
 

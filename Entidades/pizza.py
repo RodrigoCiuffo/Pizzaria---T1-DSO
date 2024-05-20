@@ -1,3 +1,7 @@
+from Entidades.Enum.sabor_pizza import SaborPizza
+from Entidades.Enum.tamanho_pizza import TamanhoPizza
+
+
 class Pizza():
     def __init__(self, sabor, tamanho):
         self.__sabor = sabor
@@ -30,10 +34,10 @@ class Pizza():
 
     def calcula_preco(self):
         # sabor x tamanho
-        if self.__sabor == 'calabrsa':
-            self.__preco += 15 * self.__tamanho
-        elif self.__sabor == 'portuguesa':
-            self.__preco += 18 * self.__tamanho
-        elif self.__sabor == 'frango':
-            self.__preco += 20 * self.__tamanho
+        if self.__sabor == SaborPizza.calabresa and self.__tamanho == TamanhoPizza.broto:
+            self.__preco += 15 * 2
+        # elif self.__sabor == 'portuguesa':
+        #     self.__preco += 18 * self.__tamanho
+        # elif self.__sabor == 'frango':
+        #     self.__preco += 20 * self.__tamanho
         return self.__preco

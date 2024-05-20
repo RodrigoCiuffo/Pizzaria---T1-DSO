@@ -14,6 +14,10 @@ class ControladorCliente():
             Cliente('rodrigo', 24, '12345678910', 'Rua dos Bobos, N° 0', '12345678')]
         self.__cliente_atual = self.__clientes[0]
         self.__pedido_finalizado = False
+        
+    @property
+    def clientes(self):
+        return self.__clientes
 
     def gerencia_imports(self):
         from Telas.tela_clientes import TelaClientes
@@ -157,7 +161,8 @@ class ControladorCliente():
             self.__tela_clientes.print_opcao(f'Cliente: {pedido.cliente}' )
             # self.__tela_clientes.print_opcao("Cliente: ", self.__cliente_atual.nome)
             self.__tela_clientes.print_opcao(f'Data: {pedido.data}')
-            self.__tela_clientes.print_opcao(f'Pizzas: {pedido.pizzas}')
+            for pizza in pedido.pizzas:
+                self.__tela_clientes.print_opcao(f'Pizzas: {pizza.sabor}')
             self.__tela_clientes.print_opcao(f'Valor: {pedido.valor}')
             self.__tela_clientes.print_opcao('------------------------------------')
 
