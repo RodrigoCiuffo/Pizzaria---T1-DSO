@@ -11,7 +11,7 @@ class ControladorCliente():
         self.__controlador_sistema = controlador_sistema
         self.__tela_clientes = imports["Tela"](self)
         self.__clientes = [
-            Cliente('rodrigo', 24, 12345678910, 'Rua dos Bobos, N° 0', 12345678)]
+            Cliente('rodrigo', 24, '12345678910', 'Rua dos Bobos, N° 0', '12345678')]
         self.__cliente_atual = self.__clientes[0]
         self.__pedido_finalizado = False
 
@@ -32,12 +32,12 @@ class ControladorCliente():
                 return cliente
         return self.__tela_clientes.print_opcao('Cliente não encontrado!')
     
-    def checa_cpf_lista(self):
-        cpf = input('Digite o cpf sem separação: ')
-        for cliente in self.__clientes:
-            if cliente.cpf == cpf:
-                return self.__tela_clientes.print_opcao('O CLIENTE JÁ EXISTE!')
-        return cpf
+    # def checa_cpf_lista(self):
+    #     cpf = input('Digite o cpf sem separação: ')
+    #     for cliente in self.__clientes:
+    #         if cliente.cpf == cpf:
+    #             return self.__tela_clientes.print_opcao('O CLIENTE JÁ EXISTE!')
+    #     return cpf
 
     def adiciona_cliente(self):
         nome = input('Digite o nome: ')
@@ -53,16 +53,16 @@ class ControladorCliente():
         self.__cliente_atual = novo_cliente
 
     def altera_dados(self):
-        cpf = int(input('Confirme o CPF do cliente para alterar os dados: '))
+        cpf = self.__tela_clientes.input_opcao('Confirme o CPF do cliente para alterar os dados: ')
         if isinstance(self.checa_cpf(cpf), Cliente):
             self.__cliente_atual = self.checa_cpf(cpf)
         # if cpf == 0 or nome == 'sair':
         #     return self.abre_tela_clientes()
         # self.checa_cpf(cpf)
-            nome = input('Digite o novo nome: ')
-            idade = int(input('Digite a nova idade: '))
-            endereco = input('Digite o novo endereço (Rua dos bobos, número 0): ')
-            telefone = int(input('Digite o novo telefone: '))
+            nome = self.__tela_clientes.input_opcao('Digite o novo nome: ')
+            idade = int(self.__tela_clientes.input_opcao('Digite a nova idade: '))
+            endereco = self.__tela_clientes.input_opcao('Digite o novo endereço (Rua dos bobos, número 0): ')
+            telefone = self.__tela_clientes.input_opcao(input('Digite o novo telefone: '))
         # for cliente in self.__clientes:
         #     if cliente.cpf == cpf:
             self.__cliente_atual.nome = nome
@@ -73,7 +73,7 @@ class ControladorCliente():
         return self.__tela_clientes.print_opcao('VOLTANDO AO MENU ANTERIOR...')
 
     def mostrar_dados(self):
-        cpf = int(input('Confirme o CPF do cliente para alterar os dados: '))
+        cpf = self.__tela_clientes.input_opcao('Confirme o CPF do cliente para alterar os dados: ')
         if isinstance(self.checa_cpf(cpf), Cliente):
             self.__cliente_atual = self.checa_cpf(cpf)
         dados = [f'---------------DADOS DO CLIENTE---------------',
@@ -86,14 +86,14 @@ class ControladorCliente():
         return self.__tela_clientes.print_opcao('\n'.join(dados))
 
     def cria_pedido(self):
-        data = input('Digite a data (ex: 19/05/2024): ')
+        data = self.__tela_clientes.input_opcao('Digite a data (ex: 19/05/2024): ')
         # pedido =  self.__cliente_atual.realiza_pedidos(data)
         self.__tela_clientes.print_opcao('Selecione a(s) pizzas para o pedido')
         self.__tela_clientes.print_opcao('----------SABOR----------')
         loop = True
         sabor_pizza = ''
         while loop:
-            sabor_escolhido = input('Escolha uma opcao:\n calabresa\n portuguesa\n frango ')
+            sabor_escolhido = self.__tela_clientes.input_opcao('Escolha uma opcao:\n calabresa\n portuguesa\n frango ')
             for sabor in SaborPizza:
                 if sabor.value == sabor_escolhido:
                     sabor_pizza = sabor
@@ -105,7 +105,7 @@ class ControladorCliente():
         loop = True
         tamanho_pizza = ''
         while loop:
-            tamanho_escolhido = input('Escolha uma opcao:\n broto\n media\n grande ')
+            tamanho_escolhido = self.__tela_clientes.input_opcao('Escolha uma opcao:\n broto\n media\n grande ')
             for tamanho in TamanhoPizza:
                 if tamanho.value == tamanho_escolhido:
                     tamanho_pizza = tamanho
@@ -115,7 +115,7 @@ class ControladorCliente():
                 self.__tela_clientes.print_opcao('Informe uma opcao válida!')
         self.__controlador_sistema.controlador_armazem.sai_ingredientes(sabor_pizza, tamanho_pizza)
         pedido = Pedido(self.__cliente_atual, sabor_pizza, tamanho_pizza, data)
-        mais_pizza = int(input('Deseja adicionar mais uma pizza?\n 1 - Sim\n 2 - Não'))
+        mais_pizza = int(self.__tela_clientes.input_opcao('Deseja adicionar mais uma pizza?\n 1 - Sim\n 2 - Não'))
 
         while mais_pizza == 1:
             # pedido =  self.__cliente_atual.realiza_pedidos(data)
@@ -124,7 +124,7 @@ class ControladorCliente():
             loop = True
             sabor_pizza = ''
             while loop:
-                sabor_escolhido = input('Escolha uma opcao:\n calabresa\n portuguesa\n frango ')
+                sabor_escolhido = self.__tela_clientes.input_opcao('Escolha uma opcao digitando exatamente o seu nome:\n calabresa\n portuguesa\n frango\n ->: ')
                 for sabor in SaborPizza:
                     if sabor.value == sabor_escolhido:
                         sabor_pizza = sabor
@@ -136,7 +136,7 @@ class ControladorCliente():
             loop = True
             tamanho_pizza = ''
             while loop:
-                tamanho_escolhido = input('Escolha uma opcao:\n broto\n media\n grande ')
+                tamanho_escolhido = self.__tela_clientes.input_opcao('Escolha uma opcao digitando exatamente o tamanho:\n broto\n media\n grande\n ->:  ')
                 for tamanho in TamanhoPizza:
                     if tamanho.value == tamanho_escolhido:
                         tamanho_pizza = tamanho
@@ -146,19 +146,20 @@ class ControladorCliente():
                     self.__tela_clientes.print_opcao('Informe uma opcao válida!')
             self.__controlador_sistema.controlador_armazem.sai_ingredientes(sabor_pizza, tamanho_pizza)
             pedido.adiciona_pizza(sabor_pizza, tamanho_pizza)
-            mais_pizza = int(input('Deseja adicionar mais uma pizza?\n 1 - Sim\n 2 - Não'))
-        self.__tela_clientes.print_opcao('PEDIDO FINALIZADO!')
+            mais_pizza = int(self.__tela_clientes.input_opcao('Deseja adicionar mais uma pizza?\n 1 - Sim\n 2 - Não\n ->: '))
+        # self.__tela_clientes.print_opcao('PEDIDO FINALIZADO!')
         self.__cliente_atual.pedidos.append(pedido)
-        return pedido
+        return self.__tela_clientes.print_opcao('PEDIDO REALIZADO COM SUCESSO!')
 
     def pedidos(self):
         for pedido in self.__cliente_atual.pedidos:
-            print('------------------------------------')
-            print("Cliente: ", self.__cliente_atual.nome)
-            print("Data: ", pedido.data)
-            print("Pizzas: ", pedido.pizzas)
-            print("Valor: ", pedido.valor)
-            print('------------------------------------')
+            self.__tela_clientes.print_opcao('------------------------------------')
+            self.__tela_clientes.print_opcao(f'Cliente: {pedido.cliente}' )
+            # self.__tela_clientes.print_opcao("Cliente: ", self.__cliente_atual.nome)
+            self.__tela_clientes.print_opcao(f'Data: {pedido.data}')
+            self.__tela_clientes.print_opcao(f'Pizzas: {pedido.pizzas}')
+            self.__tela_clientes.print_opcao(f'Valor: {pedido.valor}')
+            self.__tela_clientes.print_opcao('------------------------------------')
 
     def abre_tela_cliente(self):
         switcher = {

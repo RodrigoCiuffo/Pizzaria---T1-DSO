@@ -33,3 +33,7 @@ class TelaClientes():
     
     def print_opcao(self, opcao):
         print(opcao)
+
+    def input_opcao(self, opcao):
+        retorno = input(opcao)
+        return retorno
