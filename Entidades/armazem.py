@@ -3,6 +3,7 @@ from Entidades.Enum.nome_ingrediente import NomeIngrediente
 from Entidades.Enum.tamanho_pizza import TamanhoPizza
 from Entidades.Enum.sabor_pizza import SaborPizza
 
+
 class Armazem():
     def __init__(self):
         self.__estoque = []
@@ -22,7 +23,7 @@ class Armazem():
     def saida_ingrediente(self, sabor: NomeIngrediente, tamanho: TamanhoPizza):
         if isinstance(sabor, SaborPizza) and isinstance(tamanho, TamanhoPizza):
             if sabor.value == 'calabresa':
-                ingredientes = ['calabresa', 'molho', 'queijo', 'cebola', 'azeitona']
+                ingredientes = ['calabresa', 'molho de tomate', 'queijo mussarela', 'cebola', 'azeitona']
             elif sabor.value == 'portuguesa':
                 ingredientes = ['ovo', 'molho', 'queijo', 'presunto', 'cebola', 'azeitona']
             elif sabor.value == 'frango':
@@ -36,7 +37,7 @@ class Armazem():
                 subtraendo = 6 
             for i in ingredientes:
                 for ingrediente in self.__estoque:
-                    if ingrediente.nome_ingrediente.value == i:
+                    if ingrediente.nome_ingrediente == i:
                         ingrediente.quantidade -= subtraendo
                         break
                 self.__saidas.append({i: subtraendo})

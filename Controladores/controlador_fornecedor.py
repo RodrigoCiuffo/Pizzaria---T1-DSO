@@ -14,6 +14,10 @@ class ControladorFornecedor():
         self.__fornecedores.append(fornecedor)
 
     @property
+    def controlador_sistema(self):
+        return self.__fornecedores
+
+    @property
     def fornecedores(self):
         return self.__fornecedores
 

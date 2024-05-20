@@ -35,7 +35,7 @@ class TelaArmazem():
 
     def mostra_ingredientes(self):
         for elemento in self.__controlador_armazem.armazem.estoque:
-            print("Data: ", elemento.nome)
-            print("Nome: ", elemento.nome)
-            print("Quantidade: ", elemento.nome)
-            print("Fornecedor: ", elemento.fornecedor.razao_social)
+            print("Data: ", elemento.data)
+            print("Nome: ", elemento.nome_ingrediente)
+            print("Quantidade: ", elemento.quantidade)
+            print("Fornecedor: ", elemento.fornecedor)
