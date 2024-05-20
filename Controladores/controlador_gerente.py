@@ -1,13 +1,15 @@
+from Controladores.controlador_cliente import ControladorCliente
 from Controladores.controlador_sistema import ControladorSistema
 from Entidades.gerente import Gerente
 
 
 class ControladorGerente():
-    def __init__(self, controlador_sistema: ControladorSistema):
+    def __init__(self, controlador_sistema: ControladorSistema, controlador_cliente: ControladorCliente):
         imports = self.gerencia_imports()
         self.__controlador_sistema = controlador_sistema
         self.__tela_gerente = imports["Tela"](self)
         self.__gerente_atual = None
+        self.__controlador_cliente = controlador_cliente
 
     def gerencia_imports(self):
         from Telas.tela_gerente import TelaGerente
@@ -68,9 +70,9 @@ class ControladorGerente():
         return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
 
     def gera_relatorio_pedidos(self):
-        gerentes = self.__controlador_sistema.__controlador_gerente.gerentes
-        for gerente in gerentes:
-            for pedido in gerente.pedidos:
+        clientes = self.__controlador_cliente.__clientes
+        for cliente in clientes:
+            for pedido in cliente.pedidos:
                 self.__gerente_atual.relatorio_pedido.append(pedido)
         return self.__gerente_atual.relatorio_pedido
     

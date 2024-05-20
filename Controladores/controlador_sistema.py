@@ -7,7 +7,7 @@ class ControladorSistema():
         self.__controlador_fornecedor = imports["Fornecedor"](self)
         self.__controlador_armazem = imports["Armazem"](self)
         self.__controlador_cliente = imports["Cliente"](self)
-        self.__controlador_gerente = imports["Gerente"](self)
+        self.__controlador_gerente = imports["Gerente"](self, self.__controlador_cliente)
         self.__controlador_ingredientes = imports["Ingredientes"](self, self.__controlador_fornecedor)
         self.__tela_sistema = imports["Tela"]()
 
