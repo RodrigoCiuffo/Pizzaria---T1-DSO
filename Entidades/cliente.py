@@ -1,11 +1,13 @@
+from Controladores.controlador_cliente import ControladorCliente
 from Entidades.abstractpessoa import Pessoa
 
 
 
 class Cliente(Pessoa):
-    def __init__(self, nome: str, idade: int, cpf: int, endereco: str, telefone: int):
+    def __init__(self, nome: str, idade: int, cpf: int, endereco: str, telefone: int, controlador: ControladorCliente):
         super().__init__(nome, idade, cpf, endereco, telefone)
         self.__pedidos = []
+        self.__controlador = ControladorCliente
 
     def gerencia_import(self):
         from Entidades.pedido import Pedido

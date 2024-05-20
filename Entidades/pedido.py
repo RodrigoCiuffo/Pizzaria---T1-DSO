@@ -32,6 +32,7 @@ class Pedido():
 
     def adiciona_pizza(self, sabor, tamanho):
         pizza = Pizza(sabor, tamanho)
+        self.__cliente.controlador.controlador_sistema.controlador_armazem.sai_ingrediente(sabor, tamanho)
         self.__pizzas.append(pizza)
         self.__valor += pizza.preco
 
