@@ -32,7 +32,7 @@ class Pedido():
     def valor(self):
         return self.__valor
 
-    def adiciona_pizza(self, sabor, tamanho):
+    def adiciona_pizza(self, sabor: SaborPizza, tamanho: TamanhoPizza):
         pizza = Pizza(sabor, tamanho)
         self.__pizzas.append(pizza)
         self.__valor += pizza.preco
