@@ -73,11 +73,11 @@ class ControladorCliente():
     def mostrar_dados(self):
         dados = [f'---------------DADOS DO CLIENTE---------------',
                 f'Nome: {self.__cliente_atual.nome}',
-                 f'Idade: {self.__cliente_atual.idade}',
-                 f'CPF: {self.__cliente_atual.cpf}',
-                 f'Endereco: {self.__cliente_atual.endereco}',
-                 f'Telefone: {self.__cliente_atual.telefone}',
-                 f'-----------FIM DOS DADOS DO CLIENTE-----------']
+                f'Idade: {self.__cliente_atual.idade}',
+                f'CPF: {self.__cliente_atual.cpf}',
+                f'Endereco: {self.__cliente_atual.endereco}',
+                f'Telefone: {self.__cliente_atual.telefone}',
+                f'-----------FIM DOS DADOS DO CLIENTE-----------']
         return self.__tela_clientes.print_opcao('\n'.join(dados))
 
     def cria_pedido(self):
@@ -91,13 +91,28 @@ class ControladorCliente():
         pedido = Pedido(self.__cliente_atual, sabor, tamanho, data)
         mais_pizza = int(input('Deseja adicionar mais uma pizza?\n 1 - Sim\n 2 - Não'))
         while mais_pizza == 1:
-            pedido.adiciona_pizza()
+            data = input('Digite a data (ex: 19/05/2024): ')
+            # pedido =  self.__cliente_atual.realiza_pedidos(data)
+            self.__tela_clientes.print_opcao('Selecione a(s) pizzas para o pedido')
+            self.__tela_clientes.print_opcao('----------SABOR----------')
+            sabor = int(input('1 - calabresa\n 2 - portuguesa\n 3 - frango: '))
+            self.__tela_clientes.print_opcao('----------TAMANHO----------')
+            tamanho = int(input('1 - broto\n 2 - media\n 3 - grande: '))
+            pedido = Pedido(self.__cliente_atual, sabor, tamanho, data)
+            mais_pizza = int(input('Deseja adicionar mais uma pizza?\n 1 - Sim\n 2 - Não'))
+            pedido.adiciona_pizza(sabor, tamanho)
         self.__tela_clientes.print_opcao('PEDIDO FINALIZADO!')
+        self.__cliente_atual.pedidos.append(pedido)
         return pedido
-    
 
     def pedidos(self):
-        return self.__cliente_atual.pedidos
+        for pedido in self.__cliente_atual.pedidos:
+            print('------------------------------------')
+            print("Cliente: ", self.__cliente_atual.nome)
+            print("Data: ", pedido.data)
+            print("Pizzas: ", pedido.pizzas)
+            print("Valor: ", pedido.valor)
+            print('------------------------------------')
 
     def abre_tela_cliente(self):
         switcher = {
