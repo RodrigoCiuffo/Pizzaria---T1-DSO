@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class Pessoa(ABC):
     @abstractmethod
-    def __init__(self, nome: str, idade: int, cpf: int, endereco: str, telefone: int):
+    def __init__(self, nome: str, idade: int, cpf: str, endereco: str, telefone: str):
         self.__nome = nome
         self.__idade = idade
         self.__cpf = cpf
@@ -53,8 +53,8 @@ class Pessoa(ABC):
     
     
     @cpf.setter
-    def cpf(self, cpf: int):
-        if type(cpf) == int:
+    def cpf(self, cpf: str):
+        if type(cpf) == str:
             self.__cpf = cpf
             return 'Cpf alterado com sucesso'
         return 'Digite um número válido para cpf'
@@ -69,8 +69,8 @@ class Pessoa(ABC):
     
     
     @telefone.setter
-    def telefone(self, telefone: int):
-        if type(telefone) == int:
+    def telefone(self, telefone: str):
+        if type(telefone) == str:
             self.__telefone = telefone
             return 'Telefone alterado com sucesso'
         return 'Digite um número válido para telefone'

@@ -17,7 +17,7 @@ class ControladorCliente():
 
     def gerencia_imports(self):
         from Telas.tela_clientes import TelaClientes
-        return {"Tela": TelaClientes, "Controlador Sistema": ControladorSistema}
+        return {"Tela": TelaClientes}
 
     def checa_int(self, valor: int):
         valor = valor
@@ -26,7 +26,7 @@ class ControladorCliente():
                 'Digite um valor numérico inteiro: ')
         return valor
     
-    def checa_cpf(self, cpf: int):
+    def checa_cpf(self, cpf: str):
         for cliente in self.__clientes:
             if cliente.cpf == cpf:
                 return cliente
@@ -73,6 +73,9 @@ class ControladorCliente():
         return self.__tela_clientes.print_opcao('VOLTANDO AO MENU ANTERIOR...')
 
     def mostrar_dados(self):
+        cpf = int(input('Confirme o CPF do cliente para alterar os dados: '))
+        if isinstance(self.checa_cpf(cpf), Cliente):
+            self.__cliente_atual = self.checa_cpf(cpf)
         dados = [f'---------------DADOS DO CLIENTE---------------',
                 f'Nome: {self.__cliente_atual.nome}',
                 f'Idade: {self.__cliente_atual.idade}',

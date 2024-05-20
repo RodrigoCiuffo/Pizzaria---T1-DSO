@@ -1,13 +1,10 @@
 from Entidades.abstractpessoa import Pessoa
 
 
-
-
 class Cliente(Pessoa):
     def __init__(self, nome: str, idade: int, cpf: int, endereco: str, telefone: int):
         super().__init__(nome, idade, cpf, endereco, telefone)
         self.__pedidos = []
-
 
     def pedido_atual(self):
         return self.__pedidos[0]
@@ -22,4 +19,3 @@ class Cliente(Pessoa):
             pedido = Pedido(self, data)
             return pedido
         return None
-
