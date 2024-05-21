@@ -19,9 +19,10 @@ class Ingrediente():
     @property
     def quantidade(self):
         return self.__quantidade
+
     @property
     def fornecedor(self):
-        return self.__fornecedor.razao_social
+        return self.__fornecedor
     
     @data.setter
     def data(self, nova_data: str):

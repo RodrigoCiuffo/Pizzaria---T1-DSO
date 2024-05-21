@@ -1,8 +1,9 @@
 from Entidades.fornecedor import Fornecedor
-from Controladores.controlador_sistema import ControladorSistema
+# from Controladores.controlador_sistema import ControladorSistema
 
 class ControladorFornecedor():
-    def __init__(self, controlador_sistema: ControladorSistema):
+    # def __init__(self, controlador_sistema: ControladorSistema):
+    def __init__(self, controlador_sistema):
         from Telas.tela_fornecedor import TelaFornecedor
         self.__fornecedores = []
         self.__telaFornecedor = TelaFornecedor(self)

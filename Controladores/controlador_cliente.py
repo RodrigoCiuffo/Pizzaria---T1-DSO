@@ -1,12 +1,13 @@
 from Entidades.cliente import Cliente
-from Controladores.controlador_sistema import ControladorSistema
+# from Controladores.controlador_sistema import ControladorSistema
 from Entidades.pedido import Pedido
 from Entidades.Enum.tamanho_pizza import TamanhoPizza
 from Entidades.Enum.sabor_pizza import SaborPizza
 
 
 class ControladorCliente():
-    def __init__(self, controlador_sistema: ControladorSistema):
+    # def __init__(self, controlador_sistema: ControladorSistema):
+    def __init__(self, controlador_sistema):
         imports = self.gerencia_imports()
         self.__controlador_sistema = controlador_sistema
         self.__tela_clientes = imports["Tela"](self)
@@ -162,8 +163,8 @@ class ControladorCliente():
             # self.__tela_clientes.print_opcao("Cliente: ", self.__cliente_atual.nome)
             self.__tela_clientes.print_opcao(f'Data: {pedido.data}')
             for pizza in pedido.pizzas:
-                self.__tela_clientes.print_opcao(f'Pizzas: {pizza.sabor}')
-            self.__tela_clientes.print_opcao(f'Valor: {pedido.valor}')
+                self.__tela_clientes.print_opcao(f'Pizza: {pizza.sabor.value}, Tamanho: {pizza.tamanho.value}')
+            self.__tela_clientes.print_opcao(f'Valor: R${pedido.valor}0')
             self.__tela_clientes.print_opcao('------------------------------------')
 
     def abre_tela_cliente(self):

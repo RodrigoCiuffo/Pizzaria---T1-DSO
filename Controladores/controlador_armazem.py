@@ -1,8 +1,9 @@
-from Controladores.controlador_sistema import ControladorSistema
+# from Controladores.controlador_sistema import ControladorSistema
 from Entidades.armazem import Armazem
 
 class ControladorArmazem():
-    def __init__(self, controlador_sistema: ControladorSistema):
+    # def __init__(self, controlador_sistema: ControladorSistema):
+    def __init__(self, controlador_sistema):
         imports = self.gerencia_imports()
         self.__controlador_sistema = controlador_sistema
         self.__telaArmazem = imports(self)

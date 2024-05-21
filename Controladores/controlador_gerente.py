@@ -1,15 +1,16 @@
-from Controladores.controlador_cliente import ControladorCliente
-from Controladores.controlador_sistema import ControladorSistema
+# from Controladores.controlador_cliente import ControladorCliente
+# from Controladores.controlador_sistema import ControladorSistema
 from Entidades.gerente import Gerente
 
 
 class ControladorGerente():
-    def __init__(self, controlador_sistema: ControladorSistema, controlador_cliente: ControladorCliente):
+    # def __init__(self, controlador_sistema: ControladorSistema, controlador_cliente: ControladorCliente):
+    def __init__(self, controlador_sistema):
         imports = self.gerencia_imports()
         self.__controlador_sistema = controlador_sistema
         self.__tela_gerente = imports["Tela"](self)
         self.__gerente_atual = None
-        self.__controlador_cliente = controlador_cliente
+        # self.__controlador_cliente = controlador_cliente
 
     def gerencia_imports(self):
         from Telas.tela_gerente import TelaGerente
@@ -70,17 +71,18 @@ class ControladorGerente():
         return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
 
     def gera_relatorio_pedidos(self):
-        clientes = self.__controlador_cliente.clientes
+        clientes = self.__controlador_sistema.controlador_cliente.clientes
         for cliente in clientes:
             for pedido in cliente.pedidos:
                 self.__gerente_atual.relatorio_pedidos.append(pedido)
         return self.__tela_gerente.print_opcao(self.__gerente_atual.relatorio_pedidos)
     
     def gera_relatorio_ingredientes(self):
-        estoque = self.__controlador_sistema.__controlador_armazem.armazem.estoque
+        estoque = self.__controlador_sistema.controlador_armazem.armazem.estoque
         for ingrediente in estoque:
-            dados_ingrediente = f'Nome: {ingrediente.nome}\n' + f'Quantidade: {ingrediente.quantidade}\n' + f'Data: {ingrediente.data}\n' + f'Fornecedor: {ingrediente.fornecedor}\n'
+            dados_ingrediente = f'Nome: {ingrediente.nome_ingrediente}\n' + f'Quantidade: {ingrediente.quantidade}\n' + f'Data: {ingrediente.data}\n' + f'Fornecedor: {ingrediente.fornecedor.razao_social}\n'
             self.__gerente_atual.relatorio_ingredientes.append(dados_ingrediente)
+            print(dados_ingrediente)
         return self.__gerente_atual.relatorio_ingredientes
     
     def abre_tela_gerente(self):
