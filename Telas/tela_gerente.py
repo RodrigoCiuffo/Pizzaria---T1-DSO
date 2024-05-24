@@ -1,5 +1,6 @@
 from Controladores.controlador_gerente import ControladorGerente
 
+
 class TelaGerente():
     def __init__(self, controlador: ControladorGerente):
         self.__controlador = controlador
@@ -30,14 +31,14 @@ class TelaGerente():
         print('0 - Voltar para a tela inicial')
         opcao = self.le_num('Digite uma das opções: ', [1, 2, 3, 4, 5, 6, 0])
         return opcao
-    
+
     def print_opcao(self, opcao):
         print(opcao)
 
     def input_opcao(self, opcao):
         retorno = input(opcao)
         return retorno
-    
+
     def input_opcao_int(self, opcao):
         retorno = int(input(opcao))
         return retorno

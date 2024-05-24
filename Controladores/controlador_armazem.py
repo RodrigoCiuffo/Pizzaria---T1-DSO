@@ -1,8 +1,7 @@
-# from Controladores.controlador_sistema import ControladorSistema
 from Entidades.armazem import Armazem
 
+
 class ControladorArmazem():
-    # def __init__(self, controlador_sistema: ControladorSistema):
     def __init__(self, controlador_sistema):
         imports = self.gerencia_imports()
         self.__controlador_sistema = controlador_sistema
@@ -32,7 +31,8 @@ class ControladorArmazem():
         self.__controlador_sistema.acessa_tela_sistema()
 
     def abre_tela_armazem(self):
-        lista_opcoes = {1: self.inclui_armazem, 2: self.mostra_conteudo, 0: self.retornar}
+        lista_opcoes = {1: self.inclui_armazem,
+                        2: self.mostra_conteudo, 0: self.retornar}
         continua = True
         while continua:
             lista_opcoes[self.__telaArmazem.opcoes_armazem()]()

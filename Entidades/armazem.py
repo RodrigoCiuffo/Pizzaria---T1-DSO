@@ -23,65 +23,31 @@ class Armazem():
     def saida_ingrediente(self, sabor: NomeIngrediente, tamanho: TamanhoPizza):
         if isinstance(sabor, SaborPizza) and isinstance(tamanho, TamanhoPizza):
             if sabor.value == 'calabresa':
-                ingredientes = ['calabresa', 'molho de tomate', 'queijo mussarela', 'cebola', 'azeitona']
+                ingredientes = ['calabresa', 'molho de tomate',
+                                'queijo mussarela', 'cebola', 'azeitona']
             elif sabor.value == 'portuguesa':
-                ingredientes = ['ovo', 'molho', 'queijo', 'presunto', 'cebola', 'azeitona']
-            elif sabor.value == 'frango':
-                ingredientes = ['frango', 'molho', 'queijo', 'catupiry', 'azeitona']
+                ingredientes = ['ovo cozido', 'molho de tomate',
+                                'queijo mussarela', 'presunto', 'cebola', 'azeitona']
+            elif sabor.value == 'peito de frango':
+                ingredientes = ['peito de frango', 'molho de tomate',
+                                'queijo mussarela', 'catupiry', 'azeitona']
 
             if tamanho.value == 'broto':
                 subtraendo = 2
             elif tamanho.value == 'media':
                 subtraendo = 4
             elif tamanho.value == 'grande':
-                subtraendo = 6 
+                subtraendo = 6
+            isOk = True
             for i in ingredientes:
+                check = 0
                 for ingrediente in self.__estoque:
                     if ingrediente.nome_ingrediente == i:
-                        ingrediente.quantidade -= subtraendo
-                        break
+                        if ingrediente.quantidade >= subtraendo and check == 0:
+                            ingrediente.quantidade -= subtraendo
+                            check += 1
+                if check == 0:
+                    isOk = False
+                    return isOk
                 self.__saidas.append({i: subtraendo})
-        return None
-
-    # def saida_ingredientes(self, consumo):
-    #     consumidos = []
-    #     if 'calabresa' in consumo:
-    #         calabresa = consumo['calabresa']
-    #         consumidos.append(calabresa)
-
-    #     if 'molho de tomate' in consumo:
-    #         molho = consumo['molho de tomate']
-    #         consumidos.append(calabresa)
-
-    #     if 'queijo mussarela' in consumo:
-    #         queijo = consumo['queijo mussarela']
-    #         consumidos.append(calabresa)
-
-    #     if 'tomate' in consumo:
-    #         tomate = consumo['tomate']
-    #         consumidos.append(calabresa)
-
-    #     if 'cebola' in consumo:
-    #         cebola = consumo['cebola']
-    #         consumidos.append(calabresa)
-
-    #     if 'azeitona' in consumo:
-    #         azeitona = consumo['azeitona']
-    #         consumidos.append(calabresa)
-
-    #     if 'ovo cozido' in consumo:
-    #         ovo = consumo['ovo cozido']
-    #         consumidos.append(calabresa)
-
-    #     if 'presunto' in consumo:
-    #         presunto = consumo['presunto']
-    #         consumidos.append(calabresa)
-
-    #     if 'peito frango' in consumo:
-    #         frango = consumo['peito frango']
-    #         consumidos.append(calabresa)
-
-    #     if 'catupiry' in consumo:
-    #         catupiry = consumo['catupiry']
-    #         consumidos.append(calabresa)
-
+        return isOk

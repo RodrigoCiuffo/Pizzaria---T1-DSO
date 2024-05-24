@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class NomeIngrediente(Enum):
     calabresa = 'calabresa'
     molho = 'molho de tomate'

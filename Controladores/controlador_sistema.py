@@ -5,6 +5,7 @@ from Controladores.controlador_gerente import ControladorGerente
 from Controladores.controlador_ingredientes import ControladorIngredientes
 from Telas.tela_sistema import TelaSistema
 
+
 class ControladorSistema():
     def __init__(self):
         self.__controlador_fornecedor = ControladorFornecedor(self)
@@ -13,44 +14,26 @@ class ControladorSistema():
         self.__controlador_gerente = ControladorGerente(self)
         self.__controlador_ingredientes = ControladorIngredientes(self)
         self.__tela_sistema = TelaSistema()
-        # imports = self.gerencia_imports()
-        # self.__controlador_fornecedor = imports["Fornecedor"](self)
-        # self.__controlador_armazem = imports["Armazem"](self)
-        # self.__controlador_cliente = imports["Cliente"](self)
-        # self.__controlador_gerente = imports["Gerente"](self, self.__controlador_cliente)
-        # self.__controlador_ingredientes = imports["Ingredientes"](self, self.__controlador_fornecedor)
-        # self.__tela_sistema = imports["Tela"]()
 
     @property
     def controlador_armazem(self):
         return self.__controlador_armazem
-    
+
     @property
     def controlador_fornecedor(self):
         return self.__controlador_fornecedor
-    
+
     @property
     def controlador_cliente(self):
         return self.__controlador_cliente
-    
+
     @property
     def controlador_gerente(self):
         return self.__controlador_cliente
-    
+
     @property
     def controlador_ingredientes(self):
         return self.__controlador_ingredientes
-    
-    
-
-    # def gerencia_imports(self):
-    #     from Controladores.controlador_fornecedor import ControladorFornecedor
-    #     from Telas.tela_sistema import TelaSistema
-    #     from Controladores.controlador_armazem import ControladorArmazem
-    #     from Controladores.controlador_cliente import ControladorCliente
-    #     from Controladores.controlador_gerente import ControladorGerente
-    #     from Controladores.controlador_ingredientes import ControladorIngredientes
-    #     return {"Fornecedor": ControladorFornecedor, "Armazem": ControladorArmazem, "Cliente": ControladorCliente, "Gerente": ControladorGerente, "Ingredientes": ControladorIngredientes, "Tela": TelaSistema}
 
     def acessa_tela_sistema(self):
         self.abre_tela()
@@ -74,7 +57,8 @@ class ControladorSistema():
         raise SystemExit(1)
 
     def abre_tela(self):
-        lista_opcoes = {1: self.acessa_tela_fornecedor, 2: self.acessa_tela_cliente, 3: self.acessa_tela_gerente, 4: self.acessa_tela_armazem, 5: self.acessa_tela_ingrediente, 0: self.encerra_sessao}
+        lista_opcoes = {1: self.acessa_tela_fornecedor, 2: self.acessa_tela_cliente, 3: self.acessa_tela_gerente,
+                        4: self.acessa_tela_armazem, 5: self.acessa_tela_ingrediente, 0: self.encerra_sessao}
 
         while True:
             opcao_escolhida = self.__tela_sistema.opcoes_sistema()

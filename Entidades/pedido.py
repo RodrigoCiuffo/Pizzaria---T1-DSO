@@ -36,4 +36,3 @@ class Pedido():
         pizza = Pizza(sabor, tamanho)
         self.__pizzas.append(pizza)
         self.__valor += pizza.preco
-

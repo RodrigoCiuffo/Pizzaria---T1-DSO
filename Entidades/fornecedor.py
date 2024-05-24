@@ -24,7 +24,7 @@ class Fornecedor():
     @property
     def email(self):
         return self.__email
-    
+
     @email.setter
     def email(self, novo_email):
         self.__email = novo_email
@@ -36,6 +36,3 @@ class Fornecedor():
     @telefone.setter
     def telefone(self, novo_telefone):
         self.__telefone = novo_telefone
-
-
-

@@ -1,5 +1,6 @@
 from Controladores.controlador_armazem import ControladorArmazem
 
+
 class TelaArmazem():
     def __init__(self, controlador_armazem: ControladorArmazem):
         self.__controlador_armazem = controlador_armazem
@@ -17,7 +18,8 @@ class TelaArmazem():
                 if escolha >= 0 and escolha <= 2:
                     break
                 else:
-                    print('Entrada inválida! O número informado não está entre as opções.')
+                    print(
+                        'Entrada inválida! O número informado não está entre as opções.')
             except ValueError:
                 print('Entrada inválida! O número informado não é um inteiro.')
         return escolha
@@ -25,10 +27,12 @@ class TelaArmazem():
     def set_armazem(self):
         while True:
             try:
-                verificador = input('Deseja estabelecer ou resetar para um novo armazem? S/N: ').strip().upper()
+                verificador = input(
+                    'Deseja estabelecer ou resetar para um novo armazem? S/N: ').strip().upper()
                 if verificador not in ['S', 'N']:
-                    raise ValueError("Entrada inválida. Por favor, digite 'S' para Sim ou 'N' para Não.")
-                break  
+                    raise ValueError(
+                        "Entrada inválida. Por favor, digite 'S' para Sim ou 'N' para Não.")
+                break
             except ValueError as e:
                 print(e)
         return verificador

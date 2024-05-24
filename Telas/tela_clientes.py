@@ -1,5 +1,6 @@
 from Controladores.controlador_cliente import ControladorCliente
 
+
 class TelaClientes():
     def __init__(self, controlador: ControladorCliente):
         self.__controlador = controlador
@@ -30,7 +31,7 @@ class TelaClientes():
         print('0 - Voltar para a tela inicial')
         opcao = self.le_num('Digite uma das opções: ', [1, 2, 3, 4, 5, 0])
         return opcao
-    
+
     def print_opcao(self, opcao):
         print(opcao)
 

@@ -1,8 +1,8 @@
 from Entidades.fornecedor import Fornecedor
 # from Controladores.controlador_sistema import ControladorSistema
 
+
 class ControladorFornecedor():
-    # def __init__(self, controlador_sistema: ControladorSistema):
     def __init__(self, controlador_sistema):
         from Telas.tela_fornecedor import TelaFornecedor
         self.__fornecedores = []
@@ -11,7 +11,8 @@ class ControladorFornecedor():
 
     def inclui_fornecedor(self):
         dados_fornecedor = self.__telaFornecedor.cadastro_fornecedor()
-        fornecedor = Fornecedor(dados_fornecedor["Razao Social"], dados_fornecedor["CNPJ"], dados_fornecedor["Email"], dados_fornecedor["Telefone"])
+        fornecedor = Fornecedor(dados_fornecedor["Razao Social"], dados_fornecedor["CNPJ"],
+                                dados_fornecedor["Email"], dados_fornecedor["Telefone"])
         self.__fornecedores.append(fornecedor)
 
     @property
@@ -52,10 +53,10 @@ class ControladorFornecedor():
 
     def retornar(self):
         self.__controlador_sistema.acessa_tela_sistema()
-        
+
     def abre_tela_fornecedor(self):
-        lista_opcoes = {1: self.inclui_fornecedor, 2: self.exclui_fornecedor, 3: self.altera_fornecedor, 4: self.mostra_fornecedores, 0: self.retornar}
+        lista_opcoes = {1: self.inclui_fornecedor, 2: self.exclui_fornecedor,
+                        3: self.altera_fornecedor, 4: self.mostra_fornecedores, 0: self.retornar}
         continua = True
         while continua:
             lista_opcoes[self.__telaFornecedor.opcoes_fornecedor()]()
-

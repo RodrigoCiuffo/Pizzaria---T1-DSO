@@ -43,13 +43,3 @@ class Pizza():
     @preco.setter
     def preco(self, preco):
         self.__preco = preco
-
-    # def calcula_preco(self):
-    #     # sabor x tamanho
-    #     if self.__sabor == 'calabresa' and self.__tamanho == 'broto':
-    #         self.__preco += 15 * 2
-    #     elif self.__sabor == 'portuguesa':
-    #         self.__preco += 18 * self.__tamanho
-    #     elif self.__sabor == 'frango':
-    #         self.__preco += 20 * self.__tamanho
-    #     return self.__preco
