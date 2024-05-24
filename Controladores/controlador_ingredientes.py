@@ -16,6 +16,17 @@ class ControladorIngredientes():
         data = self.__telaIngredientes.input_opcao('Digite a data de chegada do ingrediente')
         loop = True
         while loop:
+            self.__telaIngredientes.printa_tela('-------- Opções ---------')
+            self.__telaIngredientes.printa_tela('       calabresa         ')
+            self.__telaIngredientes.printa_tela('    queijo mussarela     ')
+            self.__telaIngredientes.printa_tela('     molho de tomate     ')
+            self.__telaIngredientes.printa_tela('         tomate          ')
+            self.__telaIngredientes.printa_tela('         cebola          ')
+            self.__telaIngredientes.printa_tela('        azeitona         ')
+            self.__telaIngredientes.printa_tela('        ovo cozido       ')
+            self.__telaIngredientes.printa_tela('        presunto         ')
+            self.__telaIngredientes.printa_tela('       peito de frango   ')
+            self.__telaIngredientes.printa_tela('         catupiry        ')
             nome_escolhido = self.__telaIngredientes.input_opcao('Digite o nome do ingrediente')
             for nome_ingrediente in NomeIngrediente:
                 if nome_ingrediente.value == nome_escolhido:
