@@ -99,3 +99,5 @@ class ControladorGerente():
             opcao = self.__tela_gerente.mostra_tela_opcoes()
             funcao_escolhida = switcher[opcao]
             funcao_escolhida()
+            
+            
