@@ -11,11 +11,11 @@ class Ingrediente():
     @property
     def data(self):
         return self.__data
-    
+
     @property
     def nome_ingrediente(self):
         return self.__nome_ingrediente.value
-    
+
     @property
     def quantidade(self):
         return self.__quantidade
@@ -23,7 +23,7 @@ class Ingrediente():
     @property
     def fornecedor(self):
         return self.__fornecedor
-    
+
     @data.setter
     def data(self, nova_data: str):
         self.__data = nova_data
@@ -39,3 +39,6 @@ class Ingrediente():
     @fornecedor.setter
     def fornecedor(self, novo_fornecedor: Fornecedor):
         self.__fornecedor = novo_fornecedor
+
+    def __repr__(self):
+        return "Ingrediente"

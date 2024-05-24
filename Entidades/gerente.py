@@ -5,7 +5,7 @@ class Gerente(Pessoa):
     def __init__(self, nome: str, idade: int, cpf: str, endereco: str, telefone: str):
         super().__init__(nome, idade, cpf, endereco, telefone)
         self.__relatorio_pedidos = []
-        self.__relatorio_ingredientes = []
+        self.__relatorio_ingredientes = {}
 
     def acesso_administrativo(self, cpf: str):
         liberacao = False

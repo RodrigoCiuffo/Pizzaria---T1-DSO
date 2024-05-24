@@ -86,15 +86,23 @@ class ControladorGerente():
             self.__tela_gerente.print_opcao(self.__gerente_atual.relatorio_pedidos)
             return self.__tela_gerente.print_opcao(f'Valor total dos pedidos: ${valor}')
         return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
-    
+
     def gera_relatorio_ingredientes(self):
-        estoque = self.__controlador_sistema.controlador_armazem.armazem.estoque
-        for ingrediente in estoque:
-            dados_ingrediente = f'Nome: {ingrediente.nome_ingrediente}\n' + f'Quantidade: {ingrediente.quantidade}\n' + f'Data: {ingrediente.data}\n' + f'Fornecedor: {ingrediente.fornecedor.razao_social}\n'
-            self.__gerente_atual.relatorio_ingredientes.append(dados_ingrediente)
-            print(dados_ingrediente)
-        return self.__gerente_atual.relatorio_ingredientes
-    
+        cpf = self.__tela_gerente.input_opcao('Confirme o CPF do gerente para prosseguir: ')
+        if  self.__gerente_atual.acesso_administrativo(cpf):
+            for ingrediente in self.__controlador_sistema.controlador_armazem.armazem.estoque:
+                if ingrediente in self.__gerente_atual.relatorio_ingredientes:
+                    self.__gerente_atual.relatorio_ingredientes[ingrediente]["Quantidade: "] = ingrediente.quantidade
+                else:
+                    self.__gerente_atual.relatorio_ingredientes[ingrediente] = {
+                            "Data de entrada: ": ingrediente.data,
+                            "Fornecedor: ": ingrediente.fornecedor.razao_social,
+                            "Nome do ingrediente: ": ingrediente.nome_ingrediente,
+                            "Quantidade: ": ingrediente.quantidade
+                        }
+            return self.__tela_gerente.print_opcao(self.__gerente_atual.relatorio_ingredientes)
+        return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
+
     def abre_tela_gerente(self):
         switcher = {
             0: self.__controlador_sistema.acessa_tela_sistema,
