@@ -1,9 +1,6 @@
-from Controladores.controlador_fornecedor import ControladorFornecedor
-
-
 class TelaFornecedor():
 
-    def __init__(self, controlador_fornecedor: ControladorFornecedor):
+    def __init__(self, controlador_fornecedor):
         self.__controladorFornecedor = controlador_fornecedor
 
     def opcoes_fornecedor(self):
@@ -56,13 +53,21 @@ class TelaFornecedor():
         return {"Razao Social": razao_social, "CNPJ": cnpj, "Email": email, "Telefone": telefone}
 
     def exclusao_fornecedor(self):
-        cnpj = int(input('Digite o CNPJ da empresa a ser excluida'))
+        while True:
+            try:
+                cnpj = int(input('Digite o CNPJ do fornecedor a ter seus dados alterados'))
+                break
+            except ValueError:
+                print('CNPJ deve ser um número. Tente novamente.')
         return cnpj
 
     def altera_dados_fornecedor(self):
-        cnpj = int(
-            input('Digite o CNPJ do fornecedor a ter seus dados alterados'))
-        # checar tipo e se existe na lista
+        while True:
+            try:
+                cnpj = int(input('Digite o CNPJ do fornecedor a ter seus dados alterados'))
+                break
+            except ValueError:
+                print('CNPJ deve ser um número. Tente novamente.')
 
         checa_razao = ''
         while checa_razao != 'S' and checa_razao != 'N':
@@ -91,8 +96,12 @@ class TelaFornecedor():
             checa_telefone = input(
                 'Deseja alterar o numero de telefone? Digite "S" para Sim ou "N" para Nao')
         if checa_telefone == 'S':
-            novo_telefone = int(
-                input('Digite o novo numero de telefone do fornecedor'))
+            while True:
+                try:
+                    novo_telefone = int(input('Digite o novo numero de telefone do fornecedor'))
+                    break
+                except ValueError:
+                    print('Telefone deve ser um número inteiro!')
 
         alteracoes = {}
         alteracoes["CNPJ Atual"] = cnpj
@@ -115,3 +124,6 @@ class TelaFornecedor():
             print("Email: ", fornecedor.email)
             print("Telefone: ", fornecedor.telefone)
             print('---------------------------------------------')
+    
+    def printa_tela(self, arg):
+        print(arg)

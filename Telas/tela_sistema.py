@@ -11,6 +11,15 @@ class TelaSistema():
         print("4 - Armazem")
         print("5 - Ingredientes")
         print("0 - Encerrar sessão")
-
-        opcao = int(input("Escolha a opcao: "))
-        return opcao
+        
+        while True:
+            try:
+                escolha = int(input('Digite uma das opções listadas: '))
+                if escolha >= 0 and escolha <= 5:
+                    break
+                else:
+                    print(
+                        'Entrada inválida! O número informado não está entre as opções.')
+            except ValueError:
+                print('Entrada inválida! O número informado não é um inteiro.')
+        return escolha

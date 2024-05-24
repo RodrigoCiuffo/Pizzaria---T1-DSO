@@ -1,9 +1,6 @@
-from Controladores.controlador_cliente import ControladorCliente
-
-
 class TelaClientes():
-    def __init__(self, controlador: ControladorCliente):
-        self.__controlador = controlador
+    def __init__(self, controlador):
+        self.__controlador_clientes = controlador
 
     def le_num(self, mensagem: str, inteiros_validos: list):
         while True:
