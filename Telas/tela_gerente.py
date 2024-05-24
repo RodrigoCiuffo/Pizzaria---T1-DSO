@@ -1,8 +1,5 @@
-from Controladores.controlador_gerente import ControladorGerente
-
-
 class TelaGerente():
-    def __init__(self, controlador: ControladorGerente):
+    def __init__(self, controlador):
         self.__controlador = controlador
 
     def le_num(self, mensagem: str, inteiros_validos: list):

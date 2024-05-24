@@ -1,8 +1,5 @@
-from Controladores.controlador_armazem import ControladorArmazem
-
-
 class TelaArmazem():
-    def __init__(self, controlador_armazem: ControladorArmazem):
+    def __init__(self, controlador_armazem):
         self.__controlador_armazem = controlador_armazem
 
     def opcoes_armazem(self):
@@ -28,7 +25,7 @@ class TelaArmazem():
         while True:
             try:
                 verificador = input(
-                    'Deseja estabelecer ou resetar para um novo armazem? S/N: ').strip().upper()
+                    'Deseja estabelecer ou resetar para um novo armazem? S/N: ').upper()
                 if verificador not in ['S', 'N']:
                     raise ValueError(
                         "Entrada inválida. Por favor, digite 'S' para Sim ou 'N' para Não.")
@@ -43,3 +40,6 @@ class TelaArmazem():
             print("Nome: ", elemento.nome_ingrediente)
             print("Quantidade: ", elemento.quantidade)
             print("Fornecedor: ", elemento.fornecedor)
+    
+    def printa_tela(self, arg):
+        print(arg)

@@ -1,10 +1,9 @@
 from Entidades.fornecedor import Fornecedor
-# from Controladores.controlador_sistema import ControladorSistema
+from Telas.tela_fornecedor import TelaFornecedor
 
 
 class ControladorFornecedor():
     def __init__(self, controlador_sistema):
-        from Telas.tela_fornecedor import TelaFornecedor
         self.__fornecedores = []
         self.__telaFornecedor = TelaFornecedor(self)
         self.__controlador_sistema = controlador_sistema
@@ -28,9 +27,9 @@ class ControladorFornecedor():
         for fornecedor in self.__fornecedores:
             if fornecedor.cnpj == cnpj_excluido:
                 self.__fornecedores.remove(fornecedor)
-                print('Fornecedor excluido com sucesso!')
+                self.__telaFornecedor.printa_tela('Fornecedor excluido com sucesso!')
                 return None
-        print('Fornecedor nao encontrado.')
+        self.__telaFornecedor.printa_tela('Fornecedor nao encontrado.')
         return None
 
     def altera_fornecedor(self):

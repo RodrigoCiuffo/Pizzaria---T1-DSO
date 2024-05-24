@@ -1,7 +1,5 @@
-# from Controladores.controlador_sistema import ControladorSistema
 from Entidades.ingrediente import Ingrediente
 from Entidades.Enum.nome_ingrediente import NomeIngrediente
-# from Controladores.controlador_fornecedor import ControladorFornecedor
 from Telas.tela_ingredientes import TelaIngredientes
 
 
@@ -15,37 +13,34 @@ class ControladorIngredientes():
         return self.__controlador_sistema
 
     def inclui_ingrediente(self):
-        data = input('Digite a data de chegada do ingrediente')
+        data = self.__telaIngredientes.input_opcao('Digite a data de chegada do ingrediente')
         loop = True
         while loop:
-            nome_escolhido = input('Digite o nome do ingrediente')
+            nome_escolhido = self.__telaIngredientes.input_opcao('Digite o nome do ingrediente')
             for nome_ingrediente in NomeIngrediente:
                 if nome_ingrediente.value == nome_escolhido:
                     nome = nome_ingrediente
                     loop = False
                     break
             if loop is True:
-                print('Informe uma opcao válida!')
+                self.__telaIngredientes.printa_tela('Informe uma opcao válida!')
         while True:
             try:
-                qtde = int(
-                    input('Digite a quantidade, em unidades, do ingrediente: '))
-                cnpj_fornecedor = int(
-                    input('Informe o CNPJ do fornecedor que fez o envio: '))
+                qtde = int(self.__telaIngredientes.input_opcao_int('Digite a quantidade, em unidades, do ingrediente: '))
+                cnpj_fornecedor = int(self.__telaIngredientes.input_opcao_int('Informe o CNPJ do fornecedor que fez o envio: '))
                 break
             except ValueError:
-                print(
-                    "Valor inválido! Por favor, digite números inteiros válidos para a quantidade e o CNPJ.")
+                self.__telaIngredientes.printa_tela("Valor inválido! Por favor, digite números inteiros válidos para a quantidade e o CNPJ.")
         ref_fornecedor = None
         for fornecedor in self.__controlador_sistema.controlador_fornecedor.fornecedores:
             if fornecedor.cnpj == cnpj_fornecedor:
                 ref_fornecedor = fornecedor
         if ref_fornecedor is None:
-            print('Nenhum fornecedor com o CNPJ informado.')
+            self.__telaIngredientes.printa_tela('Nenhum fornecedor com o CNPJ informado.')
             return None
         else:
             dados_ingrediente = {"Data": data, "Nome": nome,
-                                 "Quantidade": qtde, "Fornecedor": ref_fornecedor}
+                                "Quantidade": qtde, "Fornecedor": ref_fornecedor}
             novo_ingrediente = Ingrediente(
                 dados_ingrediente["Data"], dados_ingrediente["Nome"], dados_ingrediente["Quantidade"], dados_ingrediente["Fornecedor"])
             self.__controlador_sistema.controlador_armazem.armazem.estoque.append(

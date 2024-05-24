@@ -36,3 +36,6 @@ class Fornecedor():
     @telefone.setter
     def telefone(self, novo_telefone):
         self.__telefone = novo_telefone
+        
+    def __str__(self):
+        return f'{self.__razao_social}'

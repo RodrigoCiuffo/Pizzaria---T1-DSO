@@ -1,6 +1,4 @@
-# from Controladores.controlador_ingredientes import ControladorIngredientes
 from Entidades.Enum.nome_ingrediente import NomeIngrediente
-
 
 class TelaIngredientes():
     def __init__(self, controlador_ingredientes):
@@ -38,3 +36,11 @@ class TelaIngredientes():
 
     def printa_tela(self, arg):
         print(arg)
+
+    def input_opcao(self, opcao):
+        retorno = input(opcao)
+        return retorno
+
+    def input_opcao_int(self, opcao):
+        retorno = int(input(opcao))
+        return retorno

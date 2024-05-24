@@ -1,16 +1,17 @@
 from Entidades.gerente import Gerente
+from Telas.tela_gerente import TelaGerente
 
 
 class ControladorGerente():
     def __init__(self, controlador_sistema):
-        imports = self.gerencia_imports()
+        # imports = self.gerencia_imports()
         self.__controlador_sistema = controlador_sistema
-        self.__tela_gerente = imports["Tela"](self)
+        self.__tela_gerente = TelaGerente(self)
         self.__gerente_atual = None
 
-    def gerencia_imports(self):
-        from Telas.tela_gerente import TelaGerente
-        return {"Tela": TelaGerente}
+    # def gerencia_imports(self):
+    #     from Telas.tela_gerente import TelaGerente
+    #     return {"Tela": TelaGerente}
 
     def cria_gerente(self):
         if self.__gerente_atual is None:
@@ -65,12 +66,12 @@ class ControladorGerente():
             'Confirme o CPF do gerente para prosseguir: ')
         if self.__gerente_atual.acesso_administrativo(cpf):
             dados = [f'---------------DADOS DO GERENTE---------------',
-                     f'Nome: {self.__gerente_atual.nome}',
-                     f'Idade: {self.__gerente_atual.idade}',
-                     f'CPF: {self.__gerente_atual.cpf}',
-                     f'Endereco: {self.__gerente_atual.endereco}',
-                     f'Telefone: {self.__gerente_atual.telefone}',
-                     f'-----------FIM DOS DADOS DO GERENTE-----------']
+                    f'Nome: {self.__gerente_atual.nome}',
+                    f'Idade: {self.__gerente_atual.idade}',
+                    f'CPF: {self.__gerente_atual.cpf}',
+                    f'Endereco: {self.__gerente_atual.endereco}',
+                    f'Telefone: {self.__gerente_atual.telefone}',
+                    f'-----------FIM DOS DADOS DO GERENTE-----------']
             return self.__tela_gerente.print_opcao('\n'.join(dados))
         return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
 
