@@ -71,11 +71,21 @@ class ControladorGerente():
         return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
 
     def gera_relatorio_pedidos(self):
-        clientes = self.__controlador_sistema.controlador_cliente.clientes
-        for cliente in clientes:
-            for pedido in cliente.pedidos:
-                self.__gerente_atual.relatorio_pedidos.append(pedido)
-        return self.__tela_gerente.print_opcao(self.__gerente_atual.relatorio_pedidos)
+        cpf = self.__tela_gerente.input_opcao('Confirme o CPF do gerente para prosseguir: ')
+        if  self.__gerente_atual.acesso_administrativo(cpf):
+            clientes = self.__controlador_sistema.controlador_cliente.clientes
+            valor = 0
+            for cliente in clientes:
+                for pedido in cliente.pedidos:
+                    self.__gerente_atual.relatorio_pedidos.append({
+                        "Cliente: ": pedido.cliente, 
+                        "Data :": pedido.data,
+                        "Valor :": pedido.valor
+                        })
+                    valor += pedido.valor
+            self.__tela_gerente.print_opcao(self.__gerente_atual.relatorio_pedidos)
+            return self.__tela_gerente.print_opcao(f'Valor total dos pedidos: ${valor}')
+        return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
     
     def gera_relatorio_ingredientes(self):
         estoque = self.__controlador_sistema.controlador_armazem.armazem.estoque

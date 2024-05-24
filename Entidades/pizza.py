@@ -19,7 +19,7 @@ class Pizza():
         elif tamanho.value == 'grande':
             consumo = 6
         self.__preco = custo * consumo
-        
+
     @property
     def sabor(self):
         return self.__sabor
