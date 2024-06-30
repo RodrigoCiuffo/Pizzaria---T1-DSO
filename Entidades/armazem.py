@@ -26,7 +26,7 @@ class Armazem():
                 ingredientes = ['calabresa','molho de tomate','queijo mussarela','cebola','azeitona']
             elif sabor.value == 'portuguesa':
                 ingredientes = ['ovo cozido','molho de tomate','queijo mussarela','presunto','cebola','azeitona']
-            elif sabor.value == 'peito de frango':
+            elif sabor.value == 'frango':
                 ingredientes = ['peito de frango','molho de tomate','queijo mussarela','catupiry','azeitona']
             if tamanho.value == 'broto':
                 subtraendo = 2
