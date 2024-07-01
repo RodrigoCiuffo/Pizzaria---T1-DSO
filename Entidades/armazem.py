@@ -20,24 +20,21 @@ class Armazem():
     def add_ingrediente(self, ingrediente: Ingrediente):
         self.__estoque.append(ingrediente)
 
-    def saida_ingrediente(self, sabor: NomeIngrediente, tamanho: TamanhoPizza):
+    def saida_ingrediente(self, sabor: SaborPizza, tamanho: TamanhoPizza):
         if isinstance(sabor, SaborPizza) and isinstance(tamanho, TamanhoPizza):
             if sabor.value == 'calabresa':
-                ingredientes = ['calabresa', 'molho de tomate',
-                                'queijo mussarela', 'cebola', 'azeitona']
+                ingredientes = ['calabresa','molho de tomate','queijo mussarela','cebola','azeitona']
             elif sabor.value == 'portuguesa':
-                ingredientes = ['ovo cozido', 'molho de tomate',
-                                'queijo mussarela', 'presunto', 'cebola', 'azeitona']
-            elif sabor.value == 'peito de frango':
-                ingredientes = ['peito de frango', 'molho de tomate',
-                                'queijo mussarela', 'catupiry', 'azeitona']
-
+                ingredientes = ['ovo cozido','molho de tomate','queijo mussarela','presunto','cebola','azeitona']
+            elif sabor.value == 'frango':
+                ingredientes = ['peito de frango','molho de tomate','queijo mussarela','catupiry','azeitona']
             if tamanho.value == 'broto':
                 subtraendo = 2
             elif tamanho.value == 'media':
                 subtraendo = 4
             elif tamanho.value == 'grande':
                 subtraendo = 6
+
             isOk = True
             for i in ingredientes:
                 check = 0
@@ -50,4 +47,4 @@ class Armazem():
                     isOk = False
                     return isOk
                 self.__saidas.append({i: subtraendo})
-        return isOk
+            return isOk

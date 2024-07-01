@@ -20,17 +20,6 @@ class TelaGerente():
                         print('Valores válidos: ', inteiros_validos)
 
     def mostra_tela_opcoes(self):
-        # print('-------------BEM-VINDO!--------------')
-        # print('1 - Cadastrar novo gerente')
-        # print('2 - Excluir gerente atual')
-        # print('3 - Alterar dados do gerente')
-        # print('4 - Mostrar todos os dados do gerente')
-        # print('5 - Gerar relatorio de pedidos')
-        # print('6 - Gerar relatorio de ingredientes')
-        # print('-------------------------------------')
-        # print('0 - Voltar para a tela inicial')
-        # opcao = self.le_num('Digite uma das opções: ', [1, 2, 3, 4, 5, 6, 0])
-        # return opcao
         layout = [  [sg.Text('GERENTE: Escolha uma opção')],
                     [sg.HorizontalSeparator(color='black')],
                     [sg.Radio('Cadastrar novo gerente', 'RADIO1', default=True, key='cadastrar'),],
@@ -115,12 +104,7 @@ class TelaGerente():
                 window.close()
                 return [nome, idade, cpf, endereco, telefone]
         window.close()
-        # retorno = input(opcao)
-        # return retorno
 
-    # def input_opcao(self, opcao):
-    #     retorno = int(input(opcao))
-    #     return retorno
     def altera_gerente(self):
         layout = [  [sg.Text('Preencha os campos abaixo')],
                     [sg.HorizontalSeparator(color='black')],

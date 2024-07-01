@@ -1,6 +1,4 @@
 from Entidades.fornecedor import Fornecedor
-# from Controladores.controlador_sistema import ControladorSistema
-
 
 class ControladorFornecedor():
     def __init__(self, controlador_sistema):
@@ -11,8 +9,8 @@ class ControladorFornecedor():
 
     def inclui_fornecedor(self):
         dados_fornecedor = self.__telaFornecedor.cadastro_fornecedor()
-        fornecedor = Fornecedor(dados_fornecedor["Razao Social"], dados_fornecedor["CNPJ"],
-                                dados_fornecedor["Email"], dados_fornecedor["Telefone"])
+        fornecedor = Fornecedor(dados_fornecedor["Razao Social"], dados_fornecedor["CNPJ"], dados_fornecedor["Email"], dados_fornecedor["Telefone"])
+        print(fornecedor.cnpj)
         self.__fornecedores.append(fornecedor)
         self.__telaFornecedor.print_opcao('Fornecedor cadastrado com sucesso!')
 
@@ -39,15 +37,13 @@ class ControladorFornecedor():
         cnpj = alteracoes["CNPJ Atual"]
         for fornecedor in self.__fornecedores:
             if fornecedor.cnpj == cnpj:
-                if "Nova Razao" in alteracoes:
-                    fornecedor.razao_social = alteracoes["Nova Razao"]
-                if "Novo CNPJ" in alteracoes:
-                    fornecedor.cnpj = alteracoes["Novo CNPJ"]
-                if "Novo Email" in alteracoes:
-                    fornecedor.email = alteracoes["Novo Email"]
-                if "Novo Telefone" in alteracoes:
-                    fornecedor.telefone = alteracoes["Novo Telefone"]
-                break
+                fornecedor.razao_social = alteracoes["Nova Razao"]
+                fornecedor.email = alteracoes["Novo Email"]
+                fornecedor.telefone = alteracoes["Novo Telefone"]
+                self.__telaFornecedor.print_opcao('Alterações realizadas com êxito!')
+                return None
+        self.__telaFornecedor.print_opcao('Fornecedor não encontrado!')
+
 
     def mostra_fornecedores(self):
         self.__telaFornecedor.mostra_fornecedores()

@@ -25,27 +25,20 @@ class ControladorGerente():
             int(cpf)
             endereco = dados[3]
             telefone = dados[4]
-            # int(telefone)
             self.__gerente_atual = Gerente(
                 nome, idade, cpf, endereco, telefone)
             return self.__tela_gerente.print_opcao('GERENTE CADASTRADO COM SUCESSO!')
         return self.__tela_gerente.print_opcao('JÁ EXISTE UM GERENTE CADASTRADO!')
 
     def exclui_gerente(self):
-        # cpf = input('Confirme o CPF do gerente para prosseguir: ')
-        # if self.__gerente_atual.acesso_administrativo(cpf):
-        
         confirma = self.__tela_gerente.exclui_gerente(
             'Tem certeza que deseja excluir o cadastro do gerente atual?: ')
         if confirma == 1:
             self.__gerente_atual = None
             return self.__tela_gerente.print_opcao('GERENTE EXCLUIDO COM SUCESSO!')
         return self.__tela_gerente.print_opcao('OPERAÇÃO CANCELADA!')
-        # return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
 
     def altera_dados(self):
-        # cpf = input('Confirme o CPF do gerente para prosseguir: ')
-        # if self.__gerente_atual.acesso_administrativo(cpf):
         if self.__gerente_atual is not None:
             dados = self.__tela_gerente.altera_gerente()
             nome = dados[0]
@@ -58,27 +51,18 @@ class ControladorGerente():
             self.__gerente_atual.telefone = telefone
             return self.__tela_gerente.print_opcao('DADOS ALTERADOS COM SUCESSO!')
         return self.__tela_gerente.print_opcao('NÃO EXISTE UM GERENTE CADASTRADO!')
-        # return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
 
     def mostrar_dados(self):
-        # cpf = int(input('Confirme o CPF do gerente para prosseguir: '))
         if self.__gerente_atual is None:
             return self.__tela_gerente.print_opcao('SEM GERENTE CADASTRADO!')
-        # cpf = self.__tela_gerente.input_opcao(
-            # 'Confirme o CPF do gerente para prosseguir: ')
-        # if self.__gerente_atual.acesso_administrativo(cpf):
         dados = [f'Nome: {self.__gerente_atual.nome}',
-                 f'Idade: {self.__gerente_atual.idade}',
-                 f'CPF: {self.__gerente_atual.cpf}',
-                 f'Endereco: {self.__gerente_atual.endereco}',
-                 f'Telefone: {self.__gerente_atual.telefone}']
+                f'Idade: {self.__gerente_atual.idade}',
+                f'CPF: {self.__gerente_atual.cpf}',
+                f'Endereco: {self.__gerente_atual.endereco}',
+                f'Telefone: {self.__gerente_atual.telefone}']
         return self.__tela_gerente.print_opcao('\n'.join(dados))
-        # return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
 
     def gera_relatorio_pedidos(self):
-        # cpf = self.__tela_gerente.input_opcao(
-        #     'Confirme o CPF do gerente para prosseguir: ')
-        # if self.__gerente_atual.acesso_administrativo(cpf):
         clientes = self.__controlador_sistema.controlador_cliente.clientes
         valor = 0
         for cliente in clientes:
@@ -92,12 +76,8 @@ class ControladorGerente():
         self.__tela_gerente.print_opcao(
             self.__gerente_atual.relatorio_pedidos)
         return self.__tela_gerente.print_opcao(f'Valor total dos pedidos: ${valor}')
-        # return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
 
     def gera_relatorio_ingredientes(self):
-        # cpf = self.__tela_gerente.input_opcao(
-        #     'Confirme o CPF do gerente para prosseguir: ')
-        # if self.__gerente_atual.acesso_administrativo(cpf):
         for ingrediente in self.__controlador_sistema.controlador_armazem.armazem.estoque:
             if ingrediente in self.__gerente_atual.relatorio_ingredientes:
                 self.__gerente_atual.relatorio_ingredientes[
@@ -110,7 +90,6 @@ class ControladorGerente():
                     "Quantidade: ": ingrediente.quantidade
                 }
         return self.__tela_gerente.print_opcao(self.__gerente_atual.relatorio_ingredientes)
-        # return self.__tela_gerente.print_opcao('ACESSO NEGADO!')
 
     def abre_tela_gerente(self):
         switcher = {

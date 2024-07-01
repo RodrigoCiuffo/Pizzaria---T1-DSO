@@ -20,17 +20,6 @@ class TelaClientes():
                         print('Valores válidos: ', inteiros_validos)
 
     def mostra_tela_opcoes(self):
-        # print('-------------BEM-VINDO!--------------')
-        # print('1 - Cadastrar novo cliente')
-        # print('2 - Alterar dados do cliente')
-        # print('3 - Mostrar todos os dados do cliente')
-        # print('----------OPÇÕES DE PEDIDOS----------')
-        # print('4 - Criar pedido')
-        # print('5 - Listar pedidos')
-        # print('-------------------------------------')
-        # print('0 - Voltar para a tela inicial')
-        # opcao = self.le_num('Digite uma das opções: ', [1, 2, 3, 4, 5, 0])
-        # return opcao
         layout = [  [sg.Text('CLIENTE: Escolha uma opção')],
                     [sg.HorizontalSeparator(color='black')],
                     [sg.Radio('Cadastrar novo cliente', 'RADIO1', default=True, key='cadastrar'),],
@@ -49,8 +38,7 @@ class TelaClientes():
             event, values = window.read()
             if event == sg.WIN_CLOSED or event == 'Cancel' or values['inicio']:
                 window.close()
-                self.__controlador.controlador_sistema.acessa_tela_sistema()
-                break
+                return 0
             elif event == 'ok':
                 if values['cadastrar']:
                     window.close()
@@ -80,7 +68,7 @@ class TelaClientes():
 
     def print_opcao2(self, opcao):
         layout = [  [sg.Text(f'{opcao}')],
-                    [sg.Button('Sim')], [sg.button('Não')]]
+                    [sg.Button('Sim')], [sg.Button('Não')]]
         window = sg.Window('PIZZARIA', layout)
         while True:
             event, values = window.read()
