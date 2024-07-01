@@ -1,5 +1,5 @@
 from Controladores.controlador_gerente import ControladorGerente
-
+import PySimpleGUI as sg
 
 class TelaGerente():
     def __init__(self, controlador: ControladorGerente):
@@ -20,25 +20,124 @@ class TelaGerente():
                         print('Valores válidos: ', inteiros_validos)
 
     def mostra_tela_opcoes(self):
-        print('-------------BEM-VINDO!--------------')
-        print('1 - Cadastrar novo gerente')
-        print('2 - Excluir gerente atual')
-        print('3 - Alterar dados do gerente')
-        print('4 - Mostrar todos os dados do gerente')
-        print('5 - Gerar relatorio de pedidos')
-        print('6 - Gerar relatorio de ingredientes')
-        print('-------------------------------------')
-        print('0 - Voltar para a tela inicial')
-        opcao = self.le_num('Digite uma das opções: ', [1, 2, 3, 4, 5, 6, 0])
-        return opcao
+        # print('-------------BEM-VINDO!--------------')
+        # print('1 - Cadastrar novo gerente')
+        # print('2 - Excluir gerente atual')
+        # print('3 - Alterar dados do gerente')
+        # print('4 - Mostrar todos os dados do gerente')
+        # print('5 - Gerar relatorio de pedidos')
+        # print('6 - Gerar relatorio de ingredientes')
+        # print('-------------------------------------')
+        # print('0 - Voltar para a tela inicial')
+        # opcao = self.le_num('Digite uma das opções: ', [1, 2, 3, 4, 5, 6, 0])
+        # return opcao
+        layout = [  [sg.Text('GERENTE: Escolha uma opção')],
+                    [sg.Radio('Cadastrar novo gerente', 'RADIO1', default=True, key='cadastrar'),],
+                    [sg.Radio('Excluir gerente atual', 'RADIO1', default=False, key='excluir'),],
+                    [sg.Radio('Alterar dados do gerente', 'RADIO1', default=False, key='alterar'),],
+                    [sg.Radio('Mostrar todos os dados do gerente', 'RADIO1', default=False, key='mostrar_dados'),],
+                    [sg.Radio('Gerar relatorio de pedidos', 'RADIO1', default=False, key='pedidos'),],
+                    [sg.Radio('Gerar relatorio de ingredientes', 'RADIO1', default=False, key='ingredientes'),],
+                    [sg.Radio('Voltar para a tela inicial', 'RADIO1', default=False, key='inicio'),],
+                    [sg.Button('Ok', key='ok'), sg.Button('Cancel')] ]
 
+        window = sg.Window('PIZZARIA', layout)
+
+        while True:
+            event, values = window.read()
+            if event == sg.WIN_CLOSED or event == 'Cancel' or values['inicio']:
+                window.close()
+                self.__controlador.controlador_sistema.acessa_tela_sistema()
+                break
+            elif event == 'ok':
+                if values['cadastrar']:
+                    window.close()
+                    return 1
+                elif values['excluir']:
+                    window.close()
+                    return 2
+                elif values['alterar']:
+                    window.close()
+                    return 3
+                elif values['mostrar_dados']:
+                    window.close()
+                    return 4
+        
     def print_opcao(self, opcao):
+        layout = [  [sg.Text(f'{opcao}')],
+                    [sg.Button('Ok')]]
+        window = sg.Window('PIZZARIA', layout)
+        while True:
+            event, values = window.read()
+            if event == sg.WIN_CLOSED or event == 'Ok': 
+                break
+        window.close()
+
+
+    def exclui_gerente(self, opcao):
         print(opcao)
+        layout = [  [sg.Text(f'{opcao}')],
+                    [sg.Button('Yes'), sg.Button('No')]
+            ]
+        window = sg.Window('PIZZARIA', layout)
+        while True:
+            event, values = window.read()
+            if event == sg.WIN_CLOSED or event == 'No': 
+                window.close()
+                return 2
+            elif event == 'Yes':
+                window.close()
+                return 1
 
-    def input_opcao(self, opcao):
-        retorno = input(opcao)
-        return retorno
+    def cadastra_gerente(self):
+        layout = [  [sg.Text('Preencha os campos abaixo')],
+                    [sg.Text('Nome'), sg.InputText(key='nome'),],
+                    [sg.Text('Idade'), sg.InputText(key='idade'),],
+                    [sg.Text('CPF'), sg.InputText(key='cpf'),],
+                    [sg.Text('Endereço'), sg.InputText(key='endereço'),],
+                    [sg.Text('Telefone'), sg.InputText(key='telefone'),],
+                    [sg.Button('Ok', key='ok'), sg.Button('Cancel')] ]
 
-    def input_opcao_int(self, opcao):
-        retorno = int(input(opcao))
-        return retorno
+        window = sg.Window('PIZZARIA', layout)
+
+        while True:
+            event, values = window.read()
+            if event == sg.WIN_CLOSED or event == 'Cancel': 
+                break
+            elif event == 'ok':
+                nome = values['nome']
+                idade = values['idade']
+                cpf = values['cpf']
+                endereco = values['endereço']
+                telefone = values['telefone']
+                window.close()
+                return [nome, idade, cpf, endereco, telefone]
+        window.close()
+        # retorno = input(opcao)
+        # return retorno
+
+    # def input_opcao(self, opcao):
+    #     retorno = int(input(opcao))
+    #     return retorno
+    def altera_gerente(self):
+        layout = [  [sg.Text('Preencha os campos abaixo')],
+                    [sg.Text('Nome'), sg.InputText(key='nome'),],
+                    [sg.Text('Idade'), sg.InputText(key='idade'),],
+                    [sg.Text('Endereço'), sg.InputText(key='endereço'),],
+                    [sg.Text('Telefone'), sg.InputText(key='telefone'),],
+                    [sg.Button('Ok', key='ok'), sg.Button('Cancel')] ]
+
+        window = sg.Window('PIZZARIA', layout)
+
+        while True:
+            event, values = window.read()
+            if event == sg.WIN_CLOSED or event == 'Cancel': 
+                break
+            elif event == 'ok':
+                nome = values['nome']
+                idade = values['idade']
+                endereco = values['endereço']
+                telefone = values['telefone']
+                window.close()
+                return [nome, idade, endereco, telefone]
+        window.close()
