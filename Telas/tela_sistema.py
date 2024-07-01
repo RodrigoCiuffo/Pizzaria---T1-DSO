@@ -18,7 +18,7 @@ class TelaSistema():
         while True:
             event, values = window.read()
             if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
-                break
+                return 0
             elif event == 'ok':
                 if values['fornecedor']:
                     window.close()

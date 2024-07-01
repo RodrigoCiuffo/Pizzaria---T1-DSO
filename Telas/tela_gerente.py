@@ -52,6 +52,12 @@ class TelaGerente():
                 elif values['mostrar_dados']:
                     window.close()
                     return 4
+                elif values['pedidos']:
+                    window.close()
+                    return 5
+                elif values['ingredientes']:
+                    window.close()
+                    return 6
         
     def print_opcao(self, opcao):
         layout = [  [sg.Text(f'{opcao}')],
