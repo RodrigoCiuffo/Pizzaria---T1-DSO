@@ -32,6 +32,7 @@ class TelaGerente():
         # opcao = self.le_num('Digite uma das opções: ', [1, 2, 3, 4, 5, 6, 0])
         # return opcao
         layout = [  [sg.Text('GERENTE: Escolha uma opção')],
+                    [sg.HorizontalSeparator(color='black')],
                     [sg.Radio('Cadastrar novo gerente', 'RADIO1', default=True, key='cadastrar'),],
                     [sg.Radio('Excluir gerente atual', 'RADIO1', default=False, key='excluir'),],
                     [sg.Radio('Alterar dados do gerente', 'RADIO1', default=False, key='alterar'),],
@@ -91,6 +92,7 @@ class TelaGerente():
 
     def cadastra_gerente(self):
         layout = [  [sg.Text('Preencha os campos abaixo')],
+                    [sg.HorizontalSeparator(color='black')],
                     [sg.Text('Nome'), sg.InputText(key='nome'),],
                     [sg.Text('Idade'), sg.InputText(key='idade'),],
                     [sg.Text('CPF'), sg.InputText(key='cpf'),],
@@ -121,6 +123,7 @@ class TelaGerente():
     #     return retorno
     def altera_gerente(self):
         layout = [  [sg.Text('Preencha os campos abaixo')],
+                    [sg.HorizontalSeparator(color='black')],
                     [sg.Text('Nome'), sg.InputText(key='nome'),],
                     [sg.Text('Idade'), sg.InputText(key='idade'),],
                     [sg.Text('Endereço'), sg.InputText(key='endereço'),],
