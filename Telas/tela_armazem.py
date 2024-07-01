@@ -57,7 +57,7 @@ class TelaArmazem():
                 f'Data: {elemento.data}',
                 f'Nome: {elemento.nome_ingrediente}',
                 f'Quantidade: {elemento.quantidade}',
-                f'Fornecedor: {elemento.fornecedor}']
+                f'Fornecedor: {elemento.fornecedor.razao_social}']
             self.print_opcao('\n'.join(dados))
 
 
