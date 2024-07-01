@@ -194,17 +194,22 @@ class ControladorCliente():
 
     def pedidos(self):
         for pedido in self.__cliente_atual.pedidos:
-            self.__tela_clientes.print_opcao(
-                '------------------------------------')
-            self.__tela_clientes.print_opcao(f'Cliente: {pedido.cliente}')
-            # self.__tela_clientes.print_opcao("Cliente: ", self.__cliente_atual.nome)
-            self.__tela_clientes.print_opcao(f'Data: {pedido.data}')
+            pizzas = []
+            cliente = pedido.cliente
+            data = cliente.data
+            # self.__tela_clientes.print_opcao(
+            #     '------------------------------------')
+            # self.__tela_clientes.print_opcao(f'Cliente: {pedido.cliente}')
+            # # self.__tela_clientes.print_opcao("Cliente: ", self.__cliente_atual.nome)
+            # self.__tela_clientes.print_opcao(f'Data: {pedido.data}')
             for pizza in pedido.pizzas:
-                self.__tela_clientes.print_opcao(
-                    f'Pizza: {pizza.sabor.value}, Tamanho: {pizza.tamanho.value}')
-            self.__tela_clientes.print_opcao(f'Valor: R${pedido.valor}0')
-            self.__tela_clientes.print_opcao(
-                '------------------------------------')
+                pizzas.append(f'Pizza: {pizza.sabor.value}')
+                pizzas.append(f'Tamanho: {pizza.tamanho.value}')
+                # self.__tela_clientes.print_opcao(
+                #     f'Pizza: {pizza.sabor.value}, Tamanho: {pizza.tamanho.value}')
+            self.__tela_clientes.print_opcao(f'Data do pedido: {data}\nPizzas: {pizzas}\nValor: R${pedido.valor}')
+            # self.__tela_clientes.print_opcao(
+            #     '------------------------------------')
 
     def abre_tela_cliente(self):
         switcher = {

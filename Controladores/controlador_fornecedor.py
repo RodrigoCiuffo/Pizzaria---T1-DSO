@@ -14,6 +14,7 @@ class ControladorFornecedor():
         fornecedor = Fornecedor(dados_fornecedor["Razao Social"], dados_fornecedor["CNPJ"],
                                 dados_fornecedor["Email"], dados_fornecedor["Telefone"])
         self.__fornecedores.append(fornecedor)
+        self.__telaFornecedor.print_opcao('Fornecedor cadastrado com sucesso!')
 
     @property
     def controlador_sistema(self):
@@ -28,9 +29,9 @@ class ControladorFornecedor():
         for fornecedor in self.__fornecedores:
             if fornecedor.cnpj == cnpj_excluido:
                 self.__fornecedores.remove(fornecedor)
-                print('Fornecedor excluido com sucesso!')
+                self.__telaFornecedor.print_opcao('Fornecedor excluido com sucesso!')
                 return None
-        print('Fornecedor nao encontrado.')
+        self.__telaFornecedor.print_opcao('Fornecedor nao encontrado.')
         return None
 
     def altera_fornecedor(self):

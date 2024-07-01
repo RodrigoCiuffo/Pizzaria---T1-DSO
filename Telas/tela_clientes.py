@@ -95,7 +95,7 @@ class TelaClientes():
     def input_opcao(self, opcao):
         layout = [  [sg.Text(f'{opcao}')],
                     [sg.InputText(key='input')],
-                    [sg.Button('Ok')], sg.Button('Cancel')]
+                    [sg.Button('Ok')], sg.Button('Cancel')],
         window = sg.Window('PIZZARIA', layout)
         while True:
             event, values = window.read()
@@ -177,7 +177,9 @@ class TelaClientes():
     def escolhe_sabor(self):
         layout = [  [sg.Text('Escolha o sabor')],
                     [sg.HorizontalSeparator(color='black')],
-                    [sg.Combo(['calabresa', 'portuguesa', 'frango'], default_value='calabresa', key='sabor')],
+                    [sg.Radio('Calabresa', 'RADIO1', default=True, key='calabresa'),],
+                    [sg.Radio('Portuguesa', 'RADIO1', default=False, key='portuguesa'),],
+                    [sg.Radio('Frango', 'RADIO1', default=False, key='frango'),],
                     [sg.Button('Ok', key='ok'), sg.Button('Cancel')] ]
 
         window = sg.Window('PIZZARIA', layout)
@@ -186,14 +188,24 @@ class TelaClientes():
             if event == sg.WIN_CLOSED or event == 'Cancel': 
                 break
             elif event == 'ok':
-                window.close()
-                return values['sabor']
+                if values['calabresa']:
+                    window.close()
+                    return 'calabresa'
+                elif values['portuguesa']:
+                    window.close()
+                    return 'portuguesa'
+                elif values['frango']:
+                    window.close()
+                    return 'frango'
+                # return values['sabor']
         window.close()
 
     def escolhe_tamanho(self):
         layout = [  [sg.Text('Escolha o tamanho')],
                     [sg.HorizontalSeparator(color='black')],
-                    [sg.Combo(['broto', 'media', 'grande'], default_value='media', key='tamanho')],
+                    [sg.Radio('Broto', 'RADIO1', default=False, key='broto'),],
+                    [sg.Radio('Média', 'RADIO1', default=True, key='media'),],
+                    [sg.Radio('Grande', 'RADIO1', default=False, key='grande'),],
                     [sg.Button('Ok', key='ok'), sg.Button('Cancel')] ]
 
         window = sg.Window('PIZZARIA', layout)
@@ -202,6 +214,13 @@ class TelaClientes():
             if event == sg.WIN_CLOSED or event == 'Cancel': 
                 break
             elif event == 'ok':
-                window.close()
-                return values['tamanho']
+                if values['broto']:
+                    window.close()
+                    return 'broto'
+                elif values['media']:
+                    window.close()
+                    return 'media'
+                elif values['grande']:
+                    window.close()
+                    return 'grande'
         window.close()

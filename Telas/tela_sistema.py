@@ -22,7 +22,7 @@ class TelaSistema():
                     [sg.Radio('Cliente', 'RADIO1', default=False, key='cliente'),],
                     [sg.Radio('Gerente', 'RADIO1', default=False, key='gerente'),],
                     [sg.Radio('Armazem', 'RADIO1', default=False, key='armazem'),],
-                    [sg.Radio('Ingredientes', 'RADIO1', default=False, key='ingredentes'),],
+                    [sg.Radio('Ingredientes', 'RADIO1', default=False, key='ingredientes'),],
                     [sg.Button('Ok', key='ok'), sg.Button('Cancel')] ]
 
         window = sg.Window('PIZZARIA', layout)
